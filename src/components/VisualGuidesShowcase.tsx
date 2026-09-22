@@ -137,43 +137,67 @@ const CarouselSlideImage: React.FC<{
 
 export const VisualGuidesShowcase: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
+  const isInteractingRef = useRef(false);
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Rolagem horizontal automática contínua suave (sem reflow forçado: maxScroll em cache)
+  // Rolagem horizontal automática contínua suave e infinita
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
     let animationFrameId: number;
-    const speed = 0.9; // pixels por frame
-    let maxScroll = el.scrollWidth / 2;
-
-    const updateMaxScroll = () => {
-      if (el) {
-        maxScroll = el.scrollWidth / 2;
-      }
-    };
-
-    window.addEventListener("resize", updateMaxScroll);
+    const speed = 1.0; // pixels por frame (suave e consistente em qualquer tela)
+    let currentPos = el.scrollLeft;
 
     const step = () => {
-      if (!isHovered && el) {
-        el.scrollLeft += speed;
+      if (!isInteractingRef.current && el) {
+        currentPos += speed;
+        const halfWidth = el.scrollWidth / 2;
 
-        if (maxScroll > 0 && el.scrollLeft >= maxScroll) {
-          el.scrollLeft -= maxScroll;
+        if (halfWidth > 0 && currentPos >= halfWidth) {
+          currentPos -= halfWidth;
         }
+        el.scrollLeft = currentPos;
+      } else if (el) {
+        // Mantém a posição interna sincronizada com o arraste manual do usuário
+        currentPos = el.scrollLeft;
       }
       animationFrameId = requestAnimationFrame(step);
     };
 
     animationFrameId = requestAnimationFrame(step);
 
+    const onTouchStart = () => {
+      isInteractingRef.current = true;
+      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    };
+
+    const onTouchEnd = () => {
+      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+      resumeTimeoutRef.current = setTimeout(() => {
+        if (el) currentPos = el.scrollLeft;
+        isInteractingRef.current = false;
+      }, 1500);
+    };
+
+    const onScroll = () => {
+      if (isInteractingRef.current && el) {
+        currentPos = el.scrollLeft;
+      }
+    };
+
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    el.addEventListener("scroll", onScroll, { passive: true });
+
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", updateMaxScroll);
+      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchend", onTouchEnd);
+      el.removeEventListener("scroll", onScroll);
     };
-  }, [isHovered]);
+  }, []);
 
   // Duplicação para efeito de loop contínuo infinito
   const items = [...GUIAS_ORDEM, ...GUIAS_ORDEM];
@@ -189,12 +213,20 @@ export const VisualGuidesShowcase: React.FC = () => {
       {/* TRACK DO CARROSSEL HORIZONTAL AUTOMÁTICO */}
       <div
         ref={scrollRef}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onTouchStart={() => setIsHovered(true)}
-        onTouchEnd={() => setIsHovered(false)}
+        onMouseEnter={() => {
+          isInteractingRef.current = true;
+        }}
+        onMouseLeave={() => {
+          if (scrollRef.current) {
+            isInteractingRef.current = false;
+          }
+        }}
         className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-none py-4 px-4 select-none cursor-grab active:cursor-grabbing items-center"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        style={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          scrollBehavior: "auto"
+        }}
       >
         {items.map((guia, index) => (
           <div
