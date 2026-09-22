@@ -19,7 +19,12 @@ interface GuiaSlide {
 // 10. https://postimg.cc/VdsSs3b0 -> 04 - Ovo de Tênia
 // 11. https://postimg.cc/pp0mmqfr -> 11 - Larva Filaríoide
 // 12. https://postimg.cc/qNSgLqDY -> 08 - Cisto de Entamoeba
-const GUIAS_ORDEM: GuiaSlide[] = [
+// ============================================================================
+// CONFIGURAÇÃO DOS GUIAS VISUAIS DO CARROSSEL
+// Para usar arquivos locais (recomendado para 100% de estabilidade no celular),
+// basta trocar as URLs abaixo pelos caminhos locais (ex.: "/guias/01-ovo-de-ascaride.webp")
+// ============================================================================
+export const GUIAS_ORDEM: GuiaSlide[] = [
   {
     id: "guia-01",
     nome: "Ovo de Ascaríde",
@@ -156,6 +161,7 @@ export const VisualGuidesShowcase: React.FC = () => {
                 width={278}
                 height={320}
                 loading="eager"
+                decoding="async"
                 className="w-full h-auto block object-contain"
               />
             </div>

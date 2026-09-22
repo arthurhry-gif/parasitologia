@@ -20,6 +20,61 @@ const FaqAccordion = React.lazy(() =>
   import("./components/FaqAccordion").then((mod) => ({ default: mod.FaqAccordion }))
 );
 
+// ============================================================================
+// CONFIGURAÇÃO DOS 6 BÔNUS EXCLUSIVOS
+// Para usar arquivos locais (recomendado para 100% de estabilidade no celular),
+// basta trocar as URLs abaixo pelos caminhos locais (ex.: "/bonus/bonus-01.webp")
+// ============================================================================
+export const BONUS_ITEMS = [
+  {
+    id: "bonus-01",
+    titulo: "Guia Visual dos Parasitos Mais Cobrados nas Provas",
+    descricao:
+      "Reúne os principais parasitos, com ovos, cistos e larvas destacados sobre imagens reais, permitindo uma revisão rápida dos pontos mais recorrentes nas avaliações práticas.",
+    imagem: "https://i.postimg.cc/rwzj9bHy/bonus-01-guia-visual-parasitos.png",
+    valorOriginal: "R$27",
+  },
+  {
+    id: "bonus-02",
+    titulo: "Pack de Imagens Desafiadoras",
+    descricao:
+      "Seleção de imagens com maior nível de dificuldade, semelhantes às encontradas nas provas práticas. Inclui correção visual comentada e indicação dos detalhes decisivos.",
+    imagem: "https://i.postimg.cc/FKLxMSNX/bonus-02-pack-imagens-desafiadoras.png",
+    valorOriginal: "R$27",
+  },
+  {
+    id: "bonus-03",
+    titulo: "Coleção de Questões Comentadas com Imagens",
+    descricao:
+      "Questões no estilo das provas práticas de Parasitologia, acompanhadas de comentários visuais explicando o raciocínio utilizado para chegar à resposta correta.",
+    imagem: "https://i.postimg.cc/mDWSBrg8/bonus-03-questoes-comentadas.png",
+    valorOriginal: "R$27",
+  },
+  {
+    id: "bonus-04",
+    titulo: "Modelos de Laudo Prontos",
+    descricao:
+      "Frases e formatos padronizados para descrever cada achado no laudo, prontos para usar — economiza tempo na rotina do laboratório.",
+    imagem: "https://i.postimg.cc/G3QjndwB/bonus-04-modelos-de-laudo.png",
+    valorOriginal: "R$27",
+  },
+  {
+    id: "bonus-05",
+    titulo: "Atlas de Casos Atípicos",
+    descricao:
+      'Lâminas reais que fogem do "modelo de livro" — os casos que realmente geram dúvida na bancada. Ideal para quem já passou do básico.',
+    imagem: "https://i.postimg.cc/QdBg77BF/bonus-05-atlas-casos-atipicos.png",
+    valorOriginal: "R$27",
+  },
+  {
+    id: "bonus-06",
+    titulo: "Acesso Vitalício",
+    descricao:
+      "Todos os guias organizados para estudo em qualquer dispositivo, com acesso para sempre, permitindo revisar o conteúdo em intervalos entre aulas, deslocamentos ou momentos livres.",
+    imagem: "https://i.postimg.cc/g2wyhhwT/acesso-vitalicio.png",
+    valorOriginal: "R$27",
+  },
+];
 
 export default function App() {
   const scrollToPlanos = (e: React.MouseEvent) => {
@@ -407,185 +462,40 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* BÔNUS 1 */}
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/90 hover:border-amber-400/60 flex flex-col justify-between shadow-xs transition-all hover:shadow-md group">
-              <div>
-                {/* IMAGEM DO BÔNUS 1 */}
-                <div className="w-full aspect-[3/4] mb-4 rounded-xl overflow-hidden border border-slate-200/80 bg-[#EFE9E2]">
-                  <img
-                    src="https://i.postimg.cc/rwzj9bHy/bonus-01-guia-visual-parasitos.png"
-                    alt="Guia Visual dos Parasitos Mais Cobrados nas Provas"
-                    width={300}
-                    height={400}
-                    loading="lazy"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                  />
+            {BONUS_ITEMS.map((bonus) => (
+              <div
+                key={bonus.id}
+                className="p-6 rounded-2xl bg-slate-50 border border-slate-200/90 hover:border-amber-400/60 flex flex-col justify-between shadow-xs transition-all hover:shadow-md group"
+              >
+                <div>
+                  {/* IMAGEM DO BÔNUS */}
+                  <div className="w-full aspect-[3/4] mb-4 rounded-xl overflow-hidden border border-slate-200/80 bg-[#EFE9E2]">
+                    <img
+                      src={bonus.imagem}
+                      alt={bonus.titulo}
+                      width={300}
+                      height={400}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+
+                  <h4 className="text-lg font-bold text-slate-900 leading-snug">
+                    {bonus.titulo}
+                  </h4>
+                  <p className="mt-2.5 text-sm text-slate-600 leading-relaxed">
+                    {bonus.descricao}
+                  </p>
                 </div>
-
-                <h4 className="text-lg font-bold text-slate-900 leading-snug">
-                  Guia Visual dos Parasitos Mais Cobrados nas Provas
-                </h4>
-                <p className="mt-2.5 text-sm text-slate-600 leading-relaxed">
-                  Reúne os principais parasitos, com ovos, cistos e larvas destacados sobre imagens reais, permitindo uma revisão rápida dos pontos mais recorrentes nas avaliações práticas.
-                </p>
-              </div>
-              <div className="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between">
-                <span className="text-xs text-slate-400 line-through">Valor: R$27</span>
-                <span className="text-sm font-extrabold text-amber-800 bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
-                  GRÁTIS
-                </span>
-              </div>
-            </div>
-
-            {/* BÔNUS 2 */}
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/90 hover:border-amber-400/60 flex flex-col justify-between shadow-xs transition-all hover:shadow-md group">
-              <div>
-                {/* IMAGEM DO BÔNUS 2 */}
-                <div className="w-full aspect-[3/4] mb-4 rounded-xl overflow-hidden border border-slate-200/80 bg-[#EFE9E2]">
-                  <img
-                    src="https://i.postimg.cc/FKLxMSNX/bonus-02-pack-imagens-desafiadoras.png"
-                    alt="Pack de Imagens Desafiadoras"
-                    width={300}
-                    height={400}
-                    loading="lazy"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                  />
+                <div className="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between">
+                  <span className="text-xs text-slate-400 line-through">Valor: {bonus.valorOriginal}</span>
+                  <span className="text-sm font-extrabold text-amber-800 bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
+                    GRÁTIS
+                  </span>
                 </div>
-
-                <h4 className="text-lg font-bold text-slate-900 leading-snug">
-                  Pack de Imagens Desafiadoras
-                </h4>
-                <p className="mt-2.5 text-sm text-slate-600 leading-relaxed">
-                  Seleção de imagens com maior nível de dificuldade, semelhantes às encontradas nas provas práticas. Inclui correção visual comentada e indicação dos detalhes decisivos.
-                </p>
               </div>
-              <div className="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between">
-                <span className="text-xs text-slate-400 line-through">Valor: R$27</span>
-                <span className="text-sm font-extrabold text-amber-800 bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
-                  GRÁTIS
-                </span>
-              </div>
-            </div>
-
-            {/* BÔNUS 3 */}
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/90 hover:border-amber-400/60 flex flex-col justify-between shadow-xs transition-all hover:shadow-md group">
-              <div>
-                {/* IMAGEM DO BÔNUS 3 */}
-                <div className="w-full aspect-[3/4] mb-4 rounded-xl overflow-hidden border border-slate-200/80 bg-[#EFE9E2]">
-                  <img
-                    src="https://i.postimg.cc/mDWSBrg8/bonus-03-questoes-comentadas.png"
-                    alt="Coleção de Questões Comentadas com Imagens"
-                    width={300}
-                    height={400}
-                    loading="lazy"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                <h4 className="text-lg font-bold text-slate-900 leading-snug">
-                  Coleção de Questões Comentadas com Imagens
-                </h4>
-                <p className="mt-2.5 text-sm text-slate-600 leading-relaxed">
-                  Questões no estilo das provas práticas de Parasitologia, acompanhadas de comentários visuais explicando o raciocínio utilizado para chegar à resposta correta.
-                </p>
-              </div>
-              <div className="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between">
-                <span className="text-xs text-slate-400 line-through">Valor: R$27</span>
-                <span className="text-sm font-extrabold text-amber-800 bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
-                  GRÁTIS
-                </span>
-              </div>
-            </div>
-
-            {/* BÔNUS 4 */}
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/90 hover:border-amber-400/60 flex flex-col justify-between shadow-xs transition-all hover:shadow-md group">
-              <div>
-                {/* IMAGEM DO BÔNUS 4 */}
-                <div className="w-full aspect-[3/4] mb-4 rounded-xl overflow-hidden border border-slate-200/80 bg-[#EFE9E2]">
-                  <img
-                    src="https://i.postimg.cc/G3QjndwB/bonus-04-modelos-de-laudo.png"
-                    alt="Modelos de Laudo Prontos"
-                    width={300}
-                    height={400}
-                    loading="lazy"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                <h4 className="text-lg font-bold text-slate-900 leading-snug">
-                  Modelos de Laudo Prontos
-                </h4>
-                <p className="mt-2.5 text-sm text-slate-600 leading-relaxed">
-                  Frases e formatos padronizados para descrever cada achado no laudo, prontos para usar — economiza tempo na rotina do laboratório.
-                </p>
-              </div>
-              <div className="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between">
-                <span className="text-xs text-slate-400 line-through">Valor: R$27</span>
-                <span className="text-sm font-extrabold text-amber-800 bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
-                  GRÁTIS
-                </span>
-              </div>
-            </div>
-
-            {/* BÔNUS 5 */}
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/90 hover:border-amber-400/60 flex flex-col justify-between shadow-xs transition-all hover:shadow-md group">
-              <div>
-                {/* IMAGEM DO BÔNUS 5 */}
-                <div className="w-full aspect-[3/4] mb-4 rounded-xl overflow-hidden border border-slate-200/80 bg-[#EFE9E2]">
-                  <img
-                    src="https://i.postimg.cc/QdBg77BF/bonus-05-atlas-casos-atipicos.png"
-                    alt="Atlas de Casos Atípicos"
-                    width={300}
-                    height={400}
-                    loading="lazy"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                <h4 className="text-lg font-bold text-slate-900 leading-snug">
-                  Atlas de Casos Atípicos
-                </h4>
-                <p className="mt-2.5 text-sm text-slate-600 leading-relaxed">
-                  Lâminas reais que fogem do "modelo de livro" — os casos que realmente geram dúvida na bancada. Ideal para quem já passou do básico.
-                </p>
-              </div>
-              <div className="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between">
-                <span className="text-xs text-slate-400 line-through">Valor: R$27</span>
-                <span className="text-sm font-extrabold text-amber-800 bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
-                  GRÁTIS
-                </span>
-              </div>
-            </div>
-
-            {/* BÔNUS 6 */}
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/90 hover:border-amber-400/60 flex flex-col justify-between shadow-xs transition-all hover:shadow-md group">
-              <div>
-                {/* IMAGEM DO BÔNUS 6 */}
-                <div className="w-full aspect-[3/4] mb-4 rounded-xl overflow-hidden border border-slate-200/80 bg-[#EFE9E2]">
-                  <img
-                    src="https://i.postimg.cc/g2wyhhwT/acesso-vitalicio.png"
-                    alt="Acesso Vitalício"
-                    width={300}
-                    height={400}
-                    loading="lazy"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                <h4 className="text-lg font-bold text-slate-900 leading-snug">
-                  Acesso Vitalício
-                </h4>
-                <p className="mt-2.5 text-sm text-slate-600 leading-relaxed">
-                  Todos os guias organizados para estudo em qualquer dispositivo, com acesso para sempre, permitindo revisar o conteúdo em intervalos entre aulas, deslocamentos ou momentos livres.
-                </p>
-              </div>
-              <div className="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between">
-                <span className="text-xs text-slate-400 line-through">Valor: R$27</span>
-                <span className="text-sm font-extrabold text-amber-800 bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
-                  GRÁTIS
-                </span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
