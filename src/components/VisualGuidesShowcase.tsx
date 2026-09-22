@@ -28,62 +28,62 @@ export const GUIAS_ORDEM: GuiaSlide[] = [
   {
     id: "guia-01",
     nome: "Ovo de Ascaríde",
-    imagem: "https://i.postimg.cc/502HMdMV/01-ovo-de-ascaride.png"
+    imagem: "/guia_ascaris.webp"
   },
   {
     id: "guia-03",
     nome: "Ovo de Enterobius",
-    imagem: "https://i.postimg.cc/63b8Wj9V/03-ovo-de-enterobius.png"
+    imagem: "/guia_enterobius.webp"
   },
   {
     id: "guia-09",
     nome: "Oocisto de Cryptosporidium",
-    imagem: "https://i.postimg.cc/WzQtrdqF/09-oocisto-de-cryptosporidium.png"
+    imagem: "/guia_cryptosporidium.webp"
   },
   {
     id: "guia-12",
     nome: "Larva de Ancilostoma",
-    imagem: "https://i.postimg.cc/c1jvPb9p/12-larva-de-ancilostoma.png"
+    imagem: "/guia_ancilostoma.webp"
   },
   {
     id: "guia-05",
     nome: "Ovo de Hymenolepis",
-    imagem: "https://i.postimg.cc/dtyhFjgT/05-ovo-de-hymenolepis.png"
+    imagem: "/guia_hymenolepis.webp"
   },
   {
     id: "guia-02",
     nome: "Ovo de Trichuris",
-    imagem: "https://i.postimg.cc/dVRDktqz/02-ovo-de-trichuris.png"
+    imagem: "/guia_trichuris.webp"
   },
   {
     id: "guia-06",
     nome: "Ovo de Schistosoma",
-    imagem: "https://i.postimg.cc/yNVxF4x0/06-ovo-de-schistosoma.png"
+    imagem: "/guia_schistosoma.webp"
   },
   {
     id: "guia-10",
     nome: "Larva Rabditoide",
-    imagem: "https://i.postimg.cc/FRzKByjs/10-larva-rabditoide.png"
+    imagem: "/guia_larva_rabditoide.webp"
   },
   {
     id: "guia-07",
     nome: "Cisto de Giárdia",
-    imagem: "https://i.postimg.cc/5yF2xfKH/07-cisto-de-giardia.png"
+    imagem: "/guia_giardia.webp"
   },
   {
     id: "guia-04",
     nome: "Ovo de Tênia",
-    imagem: "https://i.postimg.cc/c4wfhWxh/04-ovo-de-tenia.png"
+    imagem: "/guia_tenia.webp"
   },
   {
     id: "guia-11",
     nome: "Larva Filaríoide",
-    imagem: "https://i.postimg.cc/pLvz1Syf/11-larva-filarioide.png"
+    imagem: "/guia_larva_filarioide.webp"
   },
   {
     id: "guia-08",
     nome: "Cisto de Entamoeba",
-    imagem: "https://i.postimg.cc/cJ4Yd8Rs/08-cisto-de-entamoeba.png"
+    imagem: "/guia_entamoeba.webp"
   },
 ];
 

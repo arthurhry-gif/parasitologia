@@ -31,7 +31,7 @@ export const BONUS_ITEMS = [
     titulo: "Guia Visual dos Parasitos Mais Cobrados nas Provas",
     descricao:
       "Reúne os principais parasitos, com ovos, cistos e larvas destacados sobre imagens reais, permitindo uma revisão rápida dos pontos mais recorrentes nas avaliações práticas.",
-    imagem: "https://i.postimg.cc/rwzj9bHy/bonus-01-guia-visual-parasitos.png",
+    imagem: "/bonus_01.webp",
     valorOriginal: "R$27",
   },
   {
@@ -39,7 +39,7 @@ export const BONUS_ITEMS = [
     titulo: "Pack de Imagens Desafiadoras",
     descricao:
       "Seleção de imagens com maior nível de dificuldade, semelhantes às encontradas nas provas práticas. Inclui correção visual comentada e indicação dos detalhes decisivos.",
-    imagem: "https://i.postimg.cc/FKLxMSNX/bonus-02-pack-imagens-desafiadoras.png",
+    imagem: "/bonus_02.webp",
     valorOriginal: "R$27",
   },
   {
@@ -47,7 +47,7 @@ export const BONUS_ITEMS = [
     titulo: "Coleção de Questões Comentadas com Imagens",
     descricao:
       "Questões no estilo das provas práticas de Parasitologia, acompanhadas de comentários visuais explicando o raciocínio utilizado para chegar à resposta correta.",
-    imagem: "https://i.postimg.cc/mDWSBrg8/bonus-03-questoes-comentadas.png",
+    imagem: "/bonus_03.webp",
     valorOriginal: "R$27",
   },
   {
@@ -55,7 +55,7 @@ export const BONUS_ITEMS = [
     titulo: "Modelos de Laudo Prontos",
     descricao:
       "Frases e formatos padronizados para descrever cada achado no laudo, prontos para usar — economiza tempo na rotina do laboratório.",
-    imagem: "https://i.postimg.cc/G3QjndwB/bonus-04-modelos-de-laudo.png",
+    imagem: "/bonus_04.webp",
     valorOriginal: "R$27",
   },
   {
@@ -63,7 +63,7 @@ export const BONUS_ITEMS = [
     titulo: "Atlas de Casos Atípicos",
     descricao:
       'Lâminas reais que fogem do "modelo de livro" — os casos que realmente geram dúvida na bancada. Ideal para quem já passou do básico.',
-    imagem: "https://i.postimg.cc/QdBg77BF/bonus-05-atlas-casos-atipicos.png",
+    imagem: "/bonus_05.webp",
     valorOriginal: "R$27",
   },
   {
@@ -71,7 +71,7 @@ export const BONUS_ITEMS = [
     titulo: "Acesso Vitalício",
     descricao:
       "Todos os guias organizados para estudo em qualquer dispositivo, com acesso para sempre, permitindo revisar o conteúdo em intervalos entre aulas, deslocamentos ou momentos livres.",
-    imagem: "https://i.postimg.cc/g2wyhhwT/acesso-vitalicio.png",
+    imagem: "/bonus_06.webp",
     valorOriginal: "R$27",
   },
 ];
