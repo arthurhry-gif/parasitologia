@@ -1,0 +1,6 @@
+{
+  "name": "Guias Visuais de Parasitologia",
+  "description": "Landing page de vendas dos Guias Visuais de Parasitologia para identificação segura de ovos, cistos e larvas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

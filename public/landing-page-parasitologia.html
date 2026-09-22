@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guias Visuais de Parasitologia</title>
+  <meta name="description" content="Landing page de vendas dos Guias Visuais de Parasitologia para identificação segura de ovos, cistos e larvas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #070B10;
+      --bg-card: #0F1722;
+      --bg-card-alt: #0A0F17;
+      --border-dark: #1E293B;
+      --emerald-primary: #10B981;
+      --emerald-light: #34D399;
+      --emerald-dark: #065F46;
+      --text-white: #F8FAFC;
+      --text-muted: #94A3B8;
+      --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .container-wide {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Utilitários de Tipografia */
+    h1, h2, h3, h4 {
+      line-height: 1.2;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+    .text-emerald { color: var(--emerald-light); }
+    .text-muted { color: var(--text-muted); }
+
+    /* Topbar */
+    .topbar {
+      background: linear-gradient(90deg, #059669, #10B981, #059669);
+      color: #000;
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 0.65rem 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    /* Seções */
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    /* Hero */
+    .hero {
+      background: radial-gradient(circle at 50% 0%, #132233 0%, var(--bg-dark) 70%);
+      padding: 3rem 0 4rem 0;
+      text-align: center;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .hero-title { font-size: 3.5rem; }
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--emerald-light);
+      max-width: 750px;
+      margin: 0 auto 1.25rem auto;
+      line-height: 1.4;
+    }
+
+    @media (min-width: 640px) {
+      .hero-sub { font-size: 1.45rem; }
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: #CBD5E1;
+      max-width: 680px;
+      margin: 0 auto 2rem auto;
+    }
+
+    /* Hero Checklist Card */
+    .hero-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      max-width: 480px;
+      margin: 0 auto 2rem auto;
+      text-align: left;
+    }
+
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+    }
+
+    .checklist .check-icon {
+      color: var(--emerald-light);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* Botão CTA Principal */
+    .btn-cta {
+      display: inline-block;
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(135deg, #10B981 0%, #34D399 50%, #10B981 100%);
+      color: #000;
+      font-weight: 900;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1.15rem 2rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.25);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-align: center;
+      border: none;
+    }
+
+    .btn-cta:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(16, 185, 129, 0.35);
+    }
+
+    .btn-cta:active {
+      transform: scale(0.98);
+    }
+
+    .sub-btn-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    /* Grid Público-Alvo */
+    .grid-benefits {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 640px) {
+      .grid-benefits {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .card-benefit {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .card-benefit:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    .card-benefit h3 {
+      font-size: 1.15rem;
+      color: var(--emerald-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-benefit p {
+      font-size: 0.92rem;
+      color: #CBD5E1;
+    }
+
+    /* Contador Regressivo */
+    .countdown-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 0.65rem;
+      margin: 1.5rem auto;
+      max-width: 360px;
+    }
+
+    .countdown-box {
+      flex: 1;
+      background-color: #0B111A;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 0.75rem;
+      padding: 0.75rem 0.25rem;
+      text-align: center;
+    }
+
+    .countdown-val {
+      font-family: monospace;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--emerald-light);
+      display: block;
+      line-height: 1;
+    }
+
+    .countdown-lbl {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 0.35rem;
+      display: block;
+    }
+
+    .oferta-encerrada {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: rgba(185, 28, 28, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #FCA5A5;
+      font-weight: 800;
+      border-radius: 0.75rem;
+      font-size: 1.1rem;
+    }
+
+    /* Galeria / Carrossel Horizontal */
+    .carousel-container {
+      position: relative;
+      margin-top: 2rem;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-card {
+      min-width: 82vw;
+      max-width: 340px;
+      scroll-snap-align: center;
+      flex-shrink: 0;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 1rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    @media (min-width: 640px) {
+      .carousel-card {
+        min-width: 320px;
+      }
+    }
+
+    .carousel-img-wrap {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #064E3B 0%, #022C22 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-bottom: 1px solid var(--border-dark);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .microscope-lens {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px dashed rgba(255,255,255,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0,0,0,0.4);
+      position: relative;
+    }
+
+    .microscope-center {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #000;
+      border: 2px solid var(--emerald-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--emerald-light);
+    }
+
+    .carousel-body {
+      padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Bônus Grid */
+    .grid-bonus {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 640px) {
+      .grid-bonus {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .bonus-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    .badge-bonus {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      background-color: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--emerald-light);
+      margin-bottom: 0.75rem;
+      width: fit-content;
+    }
+
+    /* Tabela de Preços (Planos) */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+        align-items: stretch;
+      }
+    }
+
+    .plan-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 1.25rem;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      text-align: left;
+    }
+
+    /* Destaque Visual para o Plano Completo */
+    .plan-card.highlight {
+      border: 2px solid var(--emerald-light);
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+      background: linear-gradient(180deg, #0F1D2C 0%, var(--bg-card) 100%);
+    }
+
+    .badge-featured {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #34D399, #10B981);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 900;
+      padding: 0.3rem 1rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .plan-price-old {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .plan-price-current {
+      font-size: 2.3rem;
+      font-weight: 900;
+      color: var(--text-white);
+      line-height: 1.1;
+      margin: 0.25rem 0;
+    }
+
+    .plan-card.highlight .plan-price-current {
+      color: var(--emerald-light);
+    }
+
+    .plan-installments {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #CBD5E1;
+    }
+
+    .plan-save {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      background-color: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--emerald-light);
+      padding: 0.25rem 0.6rem;
+      border-radius: 0.4rem;
+    }
+
+    .btn-plan-basic {
+      display: block;
+      width: 100%;
+      background-color: #1E293B;
+      color: var(--text-white);
+      font-weight: 800;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      margin-top: 1.5rem;
+      border: 1px solid #334155;
+      transition: all 0.2s;
+    }
+
+    .btn-plan-basic:hover {
+      background-color: #334155;
+    }
+
+    .btn-plan-complete {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, #10B981, #34D399);
+      color: #000;
+      font-weight: 900;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      margin-top: 1.5rem;
+      border: none;
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+      transition: all 0.2s;
+    }
+
+    .btn-plan-complete:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    /* Payment Badges */
+    .payments-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .badge-pay {
+      background-color: #1E293B;
+      border: 1px solid #334155;
+      color: #E2E8F0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.35rem 0.65rem;
+      border-radius: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* Passos de Acesso */
+    .step-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+      text-align: left;
+    }
+
+    .step-card h3 {
+      font-size: 1.2rem;
+      color: var(--text-white);
+    }
+
+    .step-card .step-sub {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--emerald-light);
+      margin: 0.25rem 0 0.75rem 0;
+    }
+
+    .step-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: #CBD5E1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    /* FAQ Acordeão */
+    .faq-accordion {
+      max-width: 750px;
+      margin: 2rem auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      text-align: left;
+    }
+
+    .faq-item {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq-header {
+      width: 100%;
+      padding: 1.15rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: none;
+      border: none;
+      color: var(--text-white);
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .faq-icon {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--emerald-light);
+      width: 24px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .faq-body {
+      padding: 0 1.25rem 1.15rem 1.25rem;
+      font-size: 0.92rem;
+      color: #CBD5E1;
+      line-height: 1.6;
+      display: none;
+    }
+
+    .faq-item.active {
+      border-color: rgba(16, 185, 129, 0.5);
+    }
+
+    .faq-item.active .faq-body {
+      display: block;
+    }
+
+    /* Rodapé */
+    footer {
+      padding: 3rem 1.25rem;
+      background-color: #04070A;
+      font-size: 0.8rem;
+      color: #64748B;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    footer p {
+      max-width: 800px;
+      margin: 0.75rem auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CONFIGURAÇÃO NO TOPO DO SCRIPT -->
+  <script>
+    // ====================================================================
+    // VARIÁVEIS DE CONFIGURAÇÃO (FÁCEIS DE EDITAR)
+    // ====================================================================
+    const DATA_FIM_OFERTA = "2026-09-25T23:59:59";
+    const LINK_CHECKOUT_BASICO = "https://pay.hotmart.com/checkout_basico?off=basico";
+    const LINK_CHECKOUT_COMPLETO = "https://pay.hotmart.com/checkout_completo?off=completo";
+
+    // Formata a data para os textos que exibem [DATA REAL DE ENCERRAMENTO]
+    function obterDataFormatada(isoStr) {
+      try {
+        const d = new Date(isoStr);
+        if (isNaN(d.getTime())) return "hoje às 23:59";
+        const dia = String(d.getDate()).padStart(2, '0');
+        const mes = String(d.getMonth() + 1).padStart(2, '0');
+        const horas = String(d.getHours()).padStart(2, '0');
+        const mins = String(d.getMinutes()).padStart(2, '0');
+        return `${dia}/${mes} às ${horas}:${mins}`;
+      } catch (e) {
+        return "hoje às 23:59";
+      }
+    }
+    const dataRealFormatada = obterDataFormatada(DATA_FIM_OFERTA);
+  </script>
+
+  <!-- SEÇÃO 1: HERO -->
+  <header class="hero">
+    <div class="container">
+      <h1 class="hero-title">GUIAS VISUAIS DE PARASITOLOGIA</h1>
+      <p class="hero-sub">
+        +120 Guias Visuais com marcações inteligentes para identificar ovos, cistos e larvas com segurança, mesmo quando tudo parece igual.
+      </p>
+
+      <div class="hero-card">
+        <ul class="checklist">
+          <li><span class="check-icon">✔</span> <span>Identificação rápida de parasitos</span></li>
+          <li><span class="check-icon">✔</span> <span>Marcações visuais inteligentes</span></li>
+          <li><span class="check-icon">✔</span> <span>Explicações objetivas em cada guia</span></li>
+          <li><span class="check-icon">✔</span> <span>Acesso para celular e tablet</span></li>
+          <li><span class="check-icon">✔</span> <span>Simulados de identificação para treinar</span></li>
+        </ul>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <button class="btn-cta btn-scroll-planos">QUERO ACESSAR OS GUIAS</button>
+        <p class="sub-btn-note">
+          <span>📲</span> <span>Você recebe tudo na hora, direto no seu WhatsApp e e-mail.</span>
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- SEÇÃO 2: VEJA OS GUIAS QUE VOCÊ VAI RECEBER JÁ -->
+  <section class="text-center" style="background-color: var(--bg-card-alt);">
+    <div class="container-wide">
+      <h2>VEJA OS GUIAS QUE VOCÊ VAI RECEBER JÁ</h2>
+      
+      <!-- [GALERIA DE IMAGENS DE EXEMPLO DOS GUIAS] (Carrossel Horizontal com Placeholders fáceis de trocar) -->
+      <div class="carousel-container">
+        <div class="carousel-track" id="carrossel-guias">
+          
+          <!-- Card Guia 1 -->
+          <div class="carousel-card">
+            <div class="carousel-img-wrap">
+              <div class="microscope-lens">
+                <div class="microscope-center">400x</div>
+              </div>
+              <span style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.8;">[Placeholder Imagem Real]</span>
+            </div>
+            <div class="carousel-body">
+              <h4 style="color: white; font-style: italic;">Ascaris lumbricoides</h4>
+              <p style="font-size: 0.8rem; color: var(--emerald-light);">Ovo fértil com membrana mamilonada</p>
+              <p style="font-size: 0.8rem; color: #94A3B8; margin-top: 0.5rem;">Marcações visuais nos bordos ondulados para diferenciação imediata de artefatos.</p>
+            </div>
+          </div>
+
+          <!-- Card Guia 2 -->
+          <div class="carousel-card">
+            <div class="carousel-img-wrap" style="background: linear-gradient(135deg, #0F766E 0%, #115E59 100%);">
+              <div class="microscope-lens">
+                <div class="microscope-center">1000x</div>
+              </div>
+              <span style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.8;">[Placeholder Imagem Real]</span>
+            </div>
+            <div class="carousel-body">
+              <h4 style="color: white; font-style: italic;">Entamoeba histolytica</h4>
+              <p style="font-size: 0.8rem; color: var(--emerald-light);">Cisto tetranucleado</p>
+              <p style="font-size: 0.8rem; color: #94A3B8; margin-top: 0.5rem;">Destaque com círculos e setas nos 4 núcleos com cariossomo pontiforme central.</p>
+            </div>
+          </div>
+
+          <!-- Card Guia 3 -->
+          <div class="carousel-card">
+            <div class="carousel-img-wrap" style="background: linear-gradient(135deg, #0369A1 0%, #075985 100%);">
+              <div class="microscope-lens">
+                <div class="microscope-center">400x</div>
+              </div>
+              <span style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.8;">[Placeholder Imagem Real]</span>
+            </div>
+            <div class="carousel-body">
+              <h4 style="color: white; font-style: italic;">Schistosoma mansoni</h4>
+              <p style="font-size: 0.8rem; color: var(--emerald-light);">Ovo com espículo lateral</p>
+              <p style="font-size: 0.8rem; color: #94A3B8; margin-top: 0.5rem;">Marcação em seta fluorescente apontando para o espinho lateral decisivo.</p>
+            </div>
+          </div>
+
+          <!-- Card Guia 4 -->
+          <div class="carousel-card">
+            <div class="carousel-img-wrap" style="background: linear-gradient(135deg, #7C2D12 0%, #431407 100%);">
+              <div class="microscope-lens">
+                <div class="microscope-center">400x</div>
+              </div>
+              <span style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.8;">[Placeholder Imagem Real]</span>
+            </div>
+            <div class="carousel-body">
+              <h4 style="color: white; font-style: italic;">Taenia sp.</h4>
+              <p style="font-size: 0.8rem; color: var(--emerald-light);">Ovo com estrias radiais</p>
+              <p style="font-size: 0.8rem; color: #94A3B8; margin-top: 0.5rem;">Identificação das estrias e membrana espessa ("roda de carroça").</p>
+            </div>
+          </div>
+
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem;">
+          ← Deslize para o lado para ver mais guias →
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 3: ESTE MATERIAL É IDEAL PARA VOCÊ QUE DESEJA -->
+  <section>
+    <div class="container">
+      <h2 class="text-center">ESTE MATERIAL É IDEAL PARA VOCÊ QUE DESEJA</h2>
+
+      <div class="grid-benefits">
+        <div class="card-benefit">
+          <h3>PARAR DE CONFUNDIR PARASITOS</h3>
+          <p>Identificar rapidamente ovos, cistos e larvas com segurança e confiança durante as provas práticas.</p>
+        </div>
+
+        <div class="card-benefit">
+          <h3>DESENVOLVER O OLHO CLÍNICO</h3>
+          <p>Aprender a observar os detalhes que realmente importam e diferenciam cada parasito.</p>
+        </div>
+
+        <div class="card-benefit">
+          <h3>REVISAR DE FORMA EFICAZ</h3>
+          <p>Ter materiais organizados para revisar em qualquer lugar e a qualquer hora.</p>
+        </div>
+
+        <div class="card-benefit">
+          <h3>PREPARAR-SE PARA AS PROVAS</h3>
+          <p>Sentir-se pronta e confiante para a primeira prova prática de Parasitologia.</p>
+        </div>
+
+        <div class="card-benefit">
+          <h3>EVITAR ERROS COMUNS</h3>
+          <p>Saber os principais erros de identificação e como evitá-los.</p>
+        </div>
+
+        <div class="card-benefit">
+          <h3>APROVEITAR O TEMPO DE ESTUDO</h3>
+          <p>Economizar tempo com materiais prontos e de fácil entendimento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 4: QUANTAS VEZES VOCÊ SE SENTIU PERDIDA EM UMA LÂMINA REAL? -->
+  <section class="text-center" style="background-color: var(--bg-card-alt);">
+    <div class="container">
+      <h2>QUANTAS VEZES VOCÊ SE SENTIU PERDIDA EM UMA LÂMINA REAL?</h2>
+      <p style="font-size: 1.1rem; color: var(--emerald-light); font-weight: 700; margin-top: 0.5rem;">
+        Aproveite a oferta por tempo limitado.
+      </p>
+
+      <!-- CONTADOR REGRESSIVO -->
+      <div id="countdown-container" style="margin: 1.75rem 0;">
+        <div class="countdown-wrap">
+          <div class="countdown-box">
+            <span class="countdown-val" id="cd-days">00</span>
+            <span class="countdown-lbl">Dias</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-val" id="cd-hours">00</span>
+            <span class="countdown-lbl">Horas</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-val" id="cd-minutes">00</span>
+            <span class="countdown-lbl">Minutos</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-val" id="cd-seconds">00</span>
+            <span class="countdown-lbl">Segundos</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn-cta btn-scroll-planos">QUERO ACESSAR AGORA E USAR HOJE</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 5: OS GUIAS VISUAIS POSSUEM: -->
+  <section>
+    <div class="container" style="max-width: 680px;">
+      <h2 class="text-center" style="margin-bottom: 2rem;">OS GUIAS VISUAIS POSSUEM:</h2>
+      <div class="hero-card" style="max-width: 100%;">
+        <ul class="checklist" style="font-size: 1.05rem;">
+          <li><span class="check-icon">✔</span> <span>120 guias visuais com imagens reais e marcações visuais</span></li>
+          <li><span class="check-icon">✔</span> <span>Comparações visuais entre parasitos semelhantes</span></li>
+          <li><span class="check-icon">✔</span> <span>Guias de identificação com dicas práticas</span></li>
+          <li><span class="check-icon">✔</span> <span>Simulados para treino de reconhecimento</span></li>
+          <li><span class="check-icon">✔</span> <span>Acesso fácil em qualquer dispositivo</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 6: TUDO O QUE VOCÊ VAI RECEBER -->
+  <section style="background-color: var(--bg-card-alt);">
+    <div class="container" style="max-width: 800px; text-align: center;">
+      <h2>TUDO O QUE VOCÊ VAI RECEBER</h2>
+      <p style="margin: 0.5rem 0; font-weight: 800; color: var(--emerald-light);">⚡ ACESSO IMEDIATO</p>
+      <p style="font-weight: 700;">TUDO FOI ORGANIZADO PARA SER SIMPLES E FÁCIL DE APLICAR.</p>
+      <p style="color: #CBD5E1; margin-bottom: 2rem;">Você escolhe o guia e já pode começar a estudar na mesma hora.</p>
+
+      <div class="hero-card" style="max-width: 100%;">
+        <ul class="checklist" style="font-size: 1rem;">
+          <li><span class="check-icon">✔</span> <span>120 guias visuais em alta resolução</span></li>
+          <li><span class="check-icon">✔</span> <span>Comparação lado a lado entre parasitos semelhantes</span></li>
+          <li><span class="check-icon">✔</span> <span>Guias de identificação detalhados</span></li>
+          <li><span class="check-icon">✔</span> <span>Simulados de identificação sem legenda</span></li>
+          <li><span class="check-icon">✔</span> <span>Quadros-resumo para revisão rápida</span></li>
+          <li><span class="check-icon">✔</span> <span>Acesso para celular e tablet</span></li>
+          <li><span class="check-icon">✔</span> <span>Correção comentada dos guias</span></li>
+          <li><span class="check-icon">✔</span> <span>Dicas para evitar confusões</span></li>
+          <li><span class="check-icon">✔</span> <span>Erros comuns de identificação</span></li>
+          <li><span class="check-icon">✔</span> <span>E muito mais…</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 7: BÔNUS EXCLUSIVOS -->
+  <section>
+    <div class="container">
+      <div class="text-center">
+        <p style="color: var(--emerald-light); font-weight: 800; font-size: 1.1rem;">E NÃO PARA POR AÍ... TEM MAIS!</p>
+        <p style="color: #CBD5E1;">Você também vai receber…</p>
+        <h2 style="margin-top: 0.5rem;">🎁 4 BÔNUS EXCLUSIVOS</h2>
+      </div>
+
+      <div class="grid-bonus">
+        <!-- Bônus 1 -->
+        <div class="bonus-card">
+          <div>
+            <span class="badge-bonus">BÔNUS #1 (incluso no Plano Completo)</span>
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Guia Visual dos Parasitos Mais Cobrados nas Provas</h3>
+            <p style="font-size: 0.9rem; color: #CBD5E1;">Reúne os principais parasitos, com ovos, cistos e larvas destacados sobre imagens reais, permitindo uma revisão rápida dos pontos mais recorrentes nas avaliações práticas.</p>
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-dark); padding-top: 0.75rem;">
+            <span style="text-decoration: line-through; color: var(--text-muted); font-size: 0.85rem;">Valor: R$27</span>
+            <span style="color: var(--emerald-light); font-weight: 900; font-size: 0.9rem;">GRÁTIS</span>
+          </div>
+        </div>
+
+        <!-- Bônus 2 -->
+        <div class="bonus-card">
+          <div>
+            <span class="badge-bonus">BÔNUS #2 (incluso no Plano Completo)</span>
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Pack de Imagens Desafiadoras</h3>
+            <p style="font-size: 0.9rem; color: #CBD5E1;">Seleção de imagens com maior nível de dificuldade, semelhantes às encontradas nas provas práticas. Inclui correção visual comentada e indicação dos detalhes decisivos.</p>
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-dark); padding-top: 0.75rem;">
+            <span style="text-decoration: line-through; color: var(--text-muted); font-size: 0.85rem;">Valor: R$27</span>
+            <span style="color: var(--emerald-light); font-weight: 900; font-size: 0.9rem;">GRÁTIS</span>
+          </div>
+        </div>
+
+        <!-- Bônus 3 -->
+        <div class="bonus-card">
+          <div>
+            <span class="badge-bonus">BÔNUS #3 (incluso no Plano Completo)</span>
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Coleção de Questões Comentadas com Imagens</h3>
+            <p style="font-size: 0.9rem; color: #CBD5E1;">Questões no estilo das provas práticas de Parasitologia, acompanhadas de comentários visuais explicando o raciocínio utilizado para chegar à resposta correta.</p>
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-dark); padding-top: 0.75rem;">
+            <span style="text-decoration: line-through; color: var(--text-muted); font-size: 0.85rem;">Valor: R$27</span>
+            <span style="color: var(--emerald-light); font-weight: 900; font-size: 0.9rem;">GRÁTIS</span>
+          </div>
+        </div>
+
+        <!-- Bônus 4 -->
+        <div class="bonus-card">
+          <div>
+            <span class="badge-bonus">BÔNUS #4 (incluso em todos os planos)</span>
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Acesso Vitalício</h3>
+            <p style="font-size: 0.9rem; color: #CBD5E1;">Todos os guias organizados para estudo em qualquer dispositivo, com acesso para sempre, permitindo revisar o conteúdo em intervalos entre aulas, deslocamentos ou momentos livres.</p>
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-dark); padding-top: 0.75rem;">
+            <span style="text-decoration: line-through; color: var(--text-muted); font-size: 0.85rem;">Valor: R$27</span>
+            <span style="color: var(--emerald-light); font-weight: 900; font-size: 0.9rem;">GRÁTIS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 8: APROVEITE ENQUANTO O PLANO COMPLETO ESTÁ EM PROMOÇÃO -->
+  <section class="text-center" style="background-color: var(--bg-card-alt);">
+    <div class="container">
+      <h2 style="color: var(--emerald-light);">Aproveite enquanto o Plano Completo está em promoção!</h2>
+      <p style="color: #CBD5E1; margin: 0.75rem 0 1.75rem 0;">
+        Garanta sua segurança e confiança nas provas práticas.
+      </p>
+      <div>
+        <button class="btn-cta btn-scroll-planos">QUERO GARANTIR O MEU AGORA</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 9: ESCOLHA A OPÇÃO IDEAL PARA VOCÊ -->
+  <section id="escolha-a-opcao-ideal-para-voce">
+    <div class="container-wide text-center">
+      <h2 style="font-size: 2.2rem; margin-bottom: 2rem;">ESCOLHA A OPÇÃO IDEAL PARA VOCÊ</h2>
+
+      <div class="pricing-grid">
+        
+        <!-- PLANO BÁSICO -->
+        <div class="plan-card">
+          <div>
+            <h3 style="font-size: 1.5rem;">PLANO BÁSICO</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 1rem 0 0.5rem 0; font-weight: 700;">Você recebe:</p>
+            <ul class="checklist">
+              <li><span class="check-icon">✔</span> <span>120 guias visuais em alta resolução</span></li>
+              <li><span class="check-icon">✔</span> <span>BÔNUS: Acesso vitalício</span></li>
+            </ul>
+          </div>
+
+          <div style="margin-top: 2rem; border-top: 1px solid var(--border-dark); padding-top: 1.25rem;">
+            <p class="plan-price-old">de R$77,90 por:</p>
+            <p class="plan-price-current">R$ 27,90</p>
+            <p class="plan-installments">ou 4x de R$7,25</p>
+            <span class="plan-save">Você economiza R$ 50,00</span>
+            
+            <a href="#" class="btn-plan-basic" id="link-checkout-basico-btn">QUERO O PLANO BÁSICO</a>
+          </div>
+        </div>
+
+        <!-- PLANO COMPLETO (DESTAQUE VISUAL) -->
+        <div class="plan-card highlight">
+          <div class="badge-featured">⚡ MAIS COMPLETO</div>
+          
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; margin-bottom: 1rem;">
+              <h3 style="font-size: 1.8rem; color: white; margin: 0;">PLANO COMPLETO</h3>
+              <p style="color: var(--emerald-light); font-weight: 800; font-size: 0.85rem; margin: 0; background: rgba(16,185,129,0.15); padding: 0.25rem 0.6rem; border-radius: 9999px; border: 1px solid rgba(16,185,129,0.3);">⚡ 3x MAIS CONTEÚDOS</p>
+            </div>
+            
+            <ul class="checklist">
+              <li><span class="check-icon">✔</span> <span>120 guias visuais em alta resolução</span></li>
+              <li><span class="check-icon">✔</span> <span>Guia Visual dos Parasitos Mais Cobrados nas Provas</span></li>
+              <li><span class="check-icon">✔</span> <span>Pack de Imagens Desafiadoras</span></li>
+              <li><span class="check-icon">✔</span> <span>Coleção de Questões Comentadas com Imagens</span></li>
+              <li><span class="check-icon">✔</span> <span>Acesso Vitalício</span></li>
+            </ul>
+          </div>
+
+          <div style="margin-top: 2rem; border-top: 1px solid var(--border-dark); padding-top: 1.25rem;">
+            <p class="plan-price-old">de R$137,90 por:</p>
+            <p class="plan-price-current">R$ 37,90</p>
+            <p class="plan-installments">ou 6x de R$6,65</p>
+            <span class="plan-save">Você economiza R$ 100,00</span>
+            
+            <a href="#" class="btn-plan-complete" id="link-checkout-completo-btn">QUERO O PLANO COMPLETO</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Meios de pagamento -->
+      <div style="margin-top: 2.5rem;">
+        <p style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-bottom: 0.75rem;">Meios de pagamento</p>
+        <div class="payments-row">
+          <span class="badge-pay"><span>💠</span> PIX (Aprovação Imediata)</span>
+          <span class="badge-pay"><span>💳</span> Cartão de Crédito em até 6x</span>
+          <span class="badge-pay"><span>📄</span> Boleto Bancário</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 10: FECHAMENTO / SEGURANÇA -->
+  <section class="text-center" style="background-color: var(--bg-card-alt); padding: 3rem 0;">
+    <div class="container">
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">UM ÚNICO PACOTE PODE TE PREPARAR PARA A PROVA PRÁTICA.</h2>
+      <p style="color: var(--emerald-light); font-size: 1.15rem; font-weight: 700;">Todo o resto é revisão.</p>
+      <div style="margin-top: 1.25rem;">
+        <span class="badge-pay" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+          <span>🔒</span> Compra 100% segura e garantida.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 11: GARANTIA DE 15 DIAS -->
+  <section>
+    <div class="container text-center">
+      <h2>GARANTIA DE 15 DIAS — ZERO RISCO PRA VOCÊ</h2>
+      <p style="margin-top: 0.75rem; color: #CBD5E1;">
+        Isso significa que, dentro dos 15 dias após a compra, se você achar que:
+      </p>
+      
+      <div class="hero-card" style="margin: 1.5rem auto; text-align: left;">
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+          <li>- o material não faz sentido para sua aprendizagem</li>
+          <li>- os guias não atendem suas necessidades</li>
+          <li>- ou simplesmente não quiser continuar</li>
+        </ul>
+      </div>
+
+      <p style="font-weight: 600; color: #CBD5E1;">
+        Você pode solicitar o reembolso. Sem burocracia. O risco fica todo do nosso lado.
+      </p>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 12: COMO É O ACESSO -->
+  <section style="background-color: var(--bg-card-alt);">
+    <div class="container" style="max-width: 750px;">
+      <div class="text-center" style="margin-bottom: 2rem;">
+        <h2>COMO É O ACESSO</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 600;">(Basta seguir os passos abaixo:)</p>
+      </div>
+
+      <div class="step-card">
+        <h3>1. Conclua sua compra</h3>
+        <p class="step-sub">Após o pagamento, seu acesso é liberado automaticamente.</p>
+        <ul class="step-list">
+          <li>- Receba um e-mail com o link</li>
+          <li>- Acesse diretamente pelo WhatsApp</li>
+          <li>- Baixe os guias para o seu dispositivo</li>
+        </ul>
+      </div>
+
+      <div class="step-card">
+        <h3>2. Entre na área de membros</h3>
+        <p class="step-sub">Acesse todo o conteúdo disponível.</p>
+        <ul class="step-list">
+          <li>- Visualize os guias visuais</li>
+          <li>- Use os guias de identificação</li>
+          <li>- Participe dos simulados</li>
+        </ul>
+      </div>
+
+      <div class="step-card">
+        <h3>3. Baixe os arquivos</h3>
+        <p class="step-sub">Tenha tudo disponível para estudo offline.</p>
+        <ul class="step-list">
+          <li>- Imprima os guias</li>
+          <li>- Estude em qualquer lugar</li>
+          <li>- Aproveite a flexibilidade do acesso</li>
+        </ul>
+      </div>
+
+      <div class="step-card">
+        <h3>4. Use e aplique</h3>
+        <p class="step-sub">Estude e prepare-se para suas provas práticas.</p>
+        <ul class="step-list">
+          <li>- Identifique parasitos com segurança</li>
+          <li>- Reveja os conteúdos sempre que precisar</li>
+          <li>- Sinta-se confiante nas avaliações</li>
+        </ul>
+      </div>
+
+      <div class="text-center" style="margin-top: 2rem;">
+        <button class="btn-cta btn-scroll-planos">QUERO ACESSAR AGORA</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 13: PERGUNTAS FREQUENTES -->
+  <section>
+    <div class="container">
+      <h2 class="text-center">PERGUNTAS FREQUENTES</h2>
+
+      <div class="faq-accordion" id="faq-lista">
+        
+        <div class="faq-item">
+          <button class="faq-header">
+            <span>+ Preciso saber desenhar para usar os guias?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            Não. Os guias já vêm com as imagens marcadas e explicadas. Você só precisa olhar, comparar e treinar.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-header">
+            <span>+ O acesso é imediato?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            Sim. Assim que o pagamento é aprovado, o acesso é liberado automaticamente e você recebe o link por e-mail e WhatsApp.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-header">
+            <span>+ Os guias são digitais?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            Sim. É um material 100% digital, sem envio físico. Você pode estudar pela tela ou baixar e imprimir.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-header">
+            <span>+ Posso acessar pelo celular?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            Sim. Funciona em celular, tablet e computador, na área de membros ou nos arquivos baixados.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-header">
+            <span>+ Como funciona a garantia?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            Você tem 15 dias para conhecer o material. Se não fizer sentido para você, basta solicitar o reembolso dentro desse prazo, sem burocracia.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-header">
+            <span>+ Os guias são de qualidade?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            Sim. As imagens são em alta resolução, com marcações visuais e explicações objetivas em cada guia, organizadas para consulta e estudo rápidos.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 14: RODAPÉ -->
+  <footer>
+    <div class="container">
+      <p style="font-weight: 700; color: #94A3B8;">©️ Todos os direitos reservados.</p>
+      
+      <p>Material educacional de apoio ao estudo. Não substitui livros, aulas nem o diagnóstico laboratorial feito por profissional habilitado.</p>
+      
+      <p>Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook. Após sair do Facebook, a responsabilidade não é deles e sim do nosso site. Fazemos todos os esforços para indicar claramente e mostrar todas as provas do produto e usamos resultados reais. Nós não vendemos o seu e-mail ou qualquer informação para terceiros. Jamais fazemos algum tipo de spam. Se você tiver alguma dúvida, sinta-se à vontade para usar o link de contato e falar conosco em horário comercial de Segunda a Sextas das 09h00 ás 18h00. Lemos e respondemos todas as mensagens por ordem de chegada.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Inserir datas formatadas
+      document.querySelectorAll(".data-real-encerramento").forEach(function(el) {
+        el.textContent = dataRealFormatada;
+      });
+
+      // Configurar links de checkout
+      const btnBasico = document.getElementById("link-checkout-basico-btn");
+      if (btnBasico) btnBasico.setAttribute("href", LINK_CHECKOUT_BASICO);
+      
+      const btnCompleto = document.getElementById("link-checkout-completo-btn");
+      if (btnCompleto) btnCompleto.setAttribute("href", LINK_CHECKOUT_COMPLETO);
+
+      // Rolagem Suave dos Botões CTA para a Seção de Planos
+      document.querySelectorAll(".btn-scroll-planos").forEach(function(btn) {
+        btn.addEventListener("click", function(e) {
+          e.preventDefault();
+          const target = document.getElementById("escolha-a-opcao-ideal-para-voce");
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      // Acordeão FAQ (clica para abrir/fechar)
+      const faqItems = document.querySelectorAll(".faq-item");
+      faqItems.forEach(function(item) {
+        const header = item.querySelector(".faq-header");
+        const icon = item.querySelector(".faq-icon");
+        header.addEventListener("click", function() {
+          const isActive = item.classList.contains("active");
+          
+          // Opcional: fechar outros abertos
+          faqItems.forEach(function(other) {
+            other.classList.remove("active");
+            const otherIcon = other.querySelector(".faq-icon");
+            if (otherIcon) otherIcon.textContent = "+";
+          });
+
+          if (!isActive) {
+            item.classList.add("active");
+            if (icon) icon.textContent = "−";
+          } else {
+            item.classList.remove("active");
+            if (icon) icon.textContent = "+";
+          }
+        });
+      });
+
+      // Contador Regressivo Real
+      const targetTime = new Date(DATA_FIM_OFERTA).getTime();
+      const elContainer = document.getElementById("countdown-container");
+      const elDays = document.getElementById("cd-days");
+      const elHours = document.getElementById("cd-hours");
+      const elMins = document.getElementById("cd-minutes");
+      const elSecs = document.getElementById("cd-seconds");
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = targetTime - now;
+
+        if (isNaN(targetTime) || diff <= 0) {
+          if (elContainer) {
+            elContainer.innerHTML = '<div class="oferta-encerrada">Oferta encerrada</div>';
+          }
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        if (elDays) elDays.textContent = String(days).padStart(2, '0');
+        if (elHours) elHours.textContent = String(hours).padStart(2, '0');
+        if (elMins) elMins.textContent = String(minutes).padStart(2, '0');
+        if (elSecs) elSecs.textContent = String(seconds).padStart(2, '0');
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    });
+  </script>
+</body>
+</html>

