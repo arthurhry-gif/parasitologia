@@ -25,45 +25,51 @@ const BonusItemImage: React.FC<{
   alt: string;
 }> = ({ src, alt }) => {
   const [currentSrc, setCurrentSrc] = useState(src);
-  const [retryCount, setRetryCount] = useState(0);
+  const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const handleError = () => {
-    if (retryCount < 3) {
-      setTimeout(() => {
-        setRetryCount((prev) => prev + 1);
-        setCurrentSrc(`${src}?r=${Date.now()}`);
-      }, 1000 * (retryCount + 1));
+    // Se o .webp falhar, tenta o .png local correspondente
+    if (currentSrc.endsWith(".webp")) {
+      setCurrentSrc(currentSrc.replace(".webp", ".png"));
+    } else {
+      // Se ambos falharem, não quebra o layout: mantém dimensões seguras
+      setHasError(true);
     }
   };
 
   return (
-    <div className="w-full aspect-[3/4] mb-4 rounded-xl overflow-hidden border border-slate-200/80 bg-[#EFE9E2] relative">
-      {!isLoaded && (
+    <div className="w-full aspect-[3/4] mb-4 rounded-xl overflow-hidden border border-slate-200/80 bg-[#EFE9E2] relative flex items-center justify-center">
+      {!isLoaded && !hasError && (
         <div className="absolute inset-0 bg-slate-200/60 animate-pulse" />
       )}
-      <img
-        src={currentSrc}
-        alt={alt}
-        width={300}
-        height={400}
-        loading="lazy"
-        decoding="async"
-        referrerPolicy="no-referrer"
-        onLoad={() => setIsLoaded(true)}
-        onError={handleError}
-        className={`w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-300 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
-      />
+      {!hasError ? (
+        <img
+          src={currentSrc}
+          alt={alt}
+          width={300}
+          height={400}
+          loading="lazy"
+          decoding="async"
+          onLoad={() => setIsLoaded(true)}
+          onError={handleError}
+          className={`w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-300 ${
+            isLoaded ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      ) : (
+        <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center text-slate-400 bg-slate-100">
+          <span className="text-xs font-semibold text-slate-600">{alt}</span>
+        </div>
+      )}
     </div>
   );
 };
 
 // ============================================================================
 // CONFIGURAÇÃO DOS 6 BÔNUS EXCLUSIVOS
-// Para usar arquivos locais (recomendado para 100% de estabilidade no celular),
-// basta trocar as URLs abaixo pelos caminhos locais (ex.: "/bonus/bonus-01.webp")
+// Arquivos locais armazenados em /public/images/
+// Para substituir qualquer imagem, basta colocar o novo arquivo com o mesmo nome em /public/images/
 // ============================================================================
 export const BONUS_ITEMS = [
   {
@@ -71,7 +77,7 @@ export const BONUS_ITEMS = [
     titulo: "Guia Visual dos Parasitos Mais Cobrados nas Provas",
     descricao:
       "Reúne os principais parasitos, com ovos, cistos e larvas destacados sobre imagens reais, permitindo uma revisão rápida dos pontos mais recorrentes nas avaliações práticas.",
-    imagem: "https://i.postimg.cc/rwzj9bHy/bonus-01-guia-visual-parasitos.png",
+    imagem: "/images/bonus-01-guia-visual-parasitos.webp", // Arquivo local em: public/images/bonus-01-guia-visual-parasitos.webp
     valorOriginal: "R$27",
   },
   {
@@ -79,7 +85,7 @@ export const BONUS_ITEMS = [
     titulo: "Pack de Imagens Desafiadoras",
     descricao:
       "Seleção de imagens com maior nível de dificuldade, semelhantes às encontradas nas provas práticas. Inclui correção visual comentada e indicação dos detalhes decisivos.",
-    imagem: "https://i.postimg.cc/FKLxMSNX/bonus-02-pack-imagens-desafiadoras.png",
+    imagem: "/images/bonus-02-pack-imagens-desafiadoras.webp", // Arquivo local em: public/images/bonus-02-pack-imagens-desafiadoras.webp
     valorOriginal: "R$27",
   },
   {
@@ -87,7 +93,7 @@ export const BONUS_ITEMS = [
     titulo: "Coleção de Questões Comentadas com Imagens",
     descricao:
       "Questões no estilo das provas práticas de Parasitologia, acompanhadas de comentários visuais explicando o raciocínio utilizado para chegar à resposta correta.",
-    imagem: "https://i.postimg.cc/mDWSBrg8/bonus-03-questoes-comentadas.png",
+    imagem: "/images/bonus-03-questoes-comentadas.webp", // Arquivo local em: public/images/bonus-03-questoes-comentadas.webp
     valorOriginal: "R$27",
   },
   {
@@ -95,7 +101,7 @@ export const BONUS_ITEMS = [
     titulo: "Modelos de Laudo Prontos",
     descricao:
       "Frases e formatos padronizados para descrever cada achado no laudo, prontos para usar — economiza tempo na rotina do laboratório.",
-    imagem: "https://i.postimg.cc/G3QjndwB/bonus-04-modelos-de-laudo.png",
+    imagem: "/images/bonus-04-modelos-de-laudo.webp", // Arquivo local em: public/images/bonus-04-modelos-de-laudo.webp
     valorOriginal: "R$27",
   },
   {
@@ -103,7 +109,7 @@ export const BONUS_ITEMS = [
     titulo: "Atlas de Casos Atípicos",
     descricao:
       'Lâminas reais que fogem do "modelo de livro" — os casos que realmente geram dúvida na bancada. Ideal para quem já passou do básico.',
-    imagem: "https://i.postimg.cc/QdBg77BF/bonus-05-atlas-casos-atipicos.png",
+    imagem: "/images/bonus-05-atlas-casos-atipicos.webp", // Arquivo local em: public/images/bonus-05-atlas-casos-atipicos.webp
     valorOriginal: "R$27",
   },
   {
@@ -111,7 +117,7 @@ export const BONUS_ITEMS = [
     titulo: "Acesso Vitalício",
     descricao:
       "Todos os guias organizados para estudo em qualquer dispositivo, com acesso para sempre, permitindo revisar o conteúdo em intervalos entre aulas, deslocamentos ou momentos livres.",
-    imagem: "https://i.postimg.cc/g2wyhhwT/acesso-vitalicio.png",
+    imagem: "/images/bonus-06-acesso-vitalicio.webp", // Arquivo local em: public/images/bonus-06-acesso-vitalicio.webp
     valorOriginal: "R$27",
   },
 ];

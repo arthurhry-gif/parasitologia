@@ -21,69 +21,69 @@ interface GuiaSlide {
 // 12. https://postimg.cc/qNSgLqDY -> 08 - Cisto de Entamoeba
 // ============================================================================
 // CONFIGURAÇÃO DOS GUIAS VISUAIS DO CARROSSEL
-// Para usar arquivos locais (recomendado para 100% de estabilidade no celular),
-// basta trocar as URLs abaixo pelos caminhos locais (ex.: "/guias/01-ovo-de-ascaride.webp")
+// Arquivos locais armazenados em /public/images/
+// Para substituir qualquer imagem, basta colocar o novo arquivo com o mesmo nome em /public/images/
 // ============================================================================
 export const GUIAS_ORDEM: GuiaSlide[] = [
   {
     id: "guia-01",
     nome: "Ovo de Ascaríde",
-    imagem: "https://i.postimg.cc/502HMdMV/01-ovo-de-ascaride.png"
+    imagem: "/images/01-ovo-de-ascaride.webp" // Arquivo local em: public/images/01-ovo-de-ascaride.webp
   },
   {
     id: "guia-03",
     nome: "Ovo de Enterobius",
-    imagem: "https://i.postimg.cc/63b8Wj9V/03-ovo-de-enterobius.png"
+    imagem: "/images/03-ovo-de-enterobius.webp" // Arquivo local em: public/images/03-ovo-de-enterobius.webp
   },
   {
     id: "guia-09",
     nome: "Oocisto de Cryptosporidium",
-    imagem: "https://i.postimg.cc/WzQtrdqF/09-oocisto-de-cryptosporidium.png"
+    imagem: "/images/09-oocisto-de-cryptosporidium.webp" // Arquivo local em: public/images/09-oocisto-de-cryptosporidium.webp
   },
   {
     id: "guia-12",
     nome: "Larva de Ancilostoma",
-    imagem: "https://i.postimg.cc/c1jvPb9p/12-larva-de-ancilostoma.png"
+    imagem: "/images/12-larva-de-ancilostoma.webp" // Arquivo local em: public/images/12-larva-de-ancilostoma.webp
   },
   {
     id: "guia-05",
     nome: "Ovo de Hymenolepis",
-    imagem: "https://i.postimg.cc/dtyhFjgT/05-ovo-de-hymenolepis.png"
+    imagem: "/images/05-ovo-de-hymenolepis.webp" // Arquivo local em: public/images/05-ovo-de-hymenolepis.webp
   },
   {
     id: "guia-02",
     nome: "Ovo de Trichuris",
-    imagem: "https://i.postimg.cc/dVRDktqz/02-ovo-de-trichuris.png"
+    imagem: "/images/02-ovo-de-trichuris.webp" // Arquivo local em: public/images/02-ovo-de-trichuris.webp
   },
   {
     id: "guia-06",
     nome: "Ovo de Schistosoma",
-    imagem: "https://i.postimg.cc/yNVxF4x0/06-ovo-de-schistosoma.png"
+    imagem: "/images/06-ovo-de-schistosoma.webp" // Arquivo local em: public/images/06-ovo-de-schistosoma.webp
   },
   {
     id: "guia-10",
     nome: "Larva Rabditoide",
-    imagem: "https://i.postimg.cc/FRzKByjs/10-larva-rabditoide.png"
+    imagem: "/images/10-larva-rabditoide.webp" // Arquivo local em: public/images/10-larva-rabditoide.webp
   },
   {
     id: "guia-07",
     nome: "Cisto de Giárdia",
-    imagem: "https://i.postimg.cc/5yF2xfKH/07-cisto-de-giardia.png"
+    imagem: "/images/07-cisto-de-giardia.webp" // Arquivo local em: public/images/07-cisto-de-giardia.webp
   },
   {
     id: "guia-04",
     nome: "Ovo de Tênia",
-    imagem: "https://i.postimg.cc/c4wfhWxh/04-ovo-de-tenia.png"
+    imagem: "/images/04-ovo-de-tenia.webp" // Arquivo local em: public/images/04-ovo-de-tenia.webp
   },
   {
     id: "guia-11",
     nome: "Larva Filaríoide",
-    imagem: "https://i.postimg.cc/pLvz1Syf/11-larva-filarioide.png"
+    imagem: "/images/11-larva-filarioide.webp" // Arquivo local em: public/images/11-larva-filarioide.webp
   },
   {
     id: "guia-08",
     nome: "Cisto de Entamoeba",
-    imagem: "https://i.postimg.cc/cJ4Yd8Rs/08-cisto-de-entamoeba.png"
+    imagem: "/images/08-cisto-de-entamoeba.webp" // Arquivo local em: public/images/08-cisto-de-entamoeba.webp
   },
 ];
 
@@ -93,38 +93,44 @@ const CarouselSlideImage: React.FC<{
   isPriority: boolean;
 }> = ({ src, alt, isPriority }) => {
   const [currentSrc, setCurrentSrc] = useState(src);
-  const [retryCount, setRetryCount] = useState(0);
+  const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const handleError = () => {
-    if (retryCount < 3) {
-      setTimeout(() => {
-        setRetryCount((prev) => prev + 1);
-        setCurrentSrc(`${src}?r=${Date.now()}`);
-      }, 1000 * (retryCount + 1));
+    // Se o .webp falhar, tenta o .png local correspondente
+    if (currentSrc.endsWith(".webp")) {
+      setCurrentSrc(currentSrc.replace(".webp", ".png"));
+    } else {
+      // Se ambos falharem, não quebra o layout: mantém dimensões seguras
+      setHasError(true);
     }
   };
 
   return (
-    <div className="relative w-full aspect-[278/320] bg-stone-100/60 flex items-center justify-center overflow-hidden">
-      {!isLoaded && (
+    <div className="relative w-full aspect-[278/320] bg-stone-100 flex items-center justify-center overflow-hidden">
+      {!isLoaded && !hasError && (
         <div className="absolute inset-0 bg-stone-200/50 animate-pulse" />
       )}
-      <img
-        src={currentSrc}
-        alt={alt}
-        width={278}
-        height={320}
-        loading={isPriority ? "eager" : "lazy"}
-        fetchPriority={isPriority ? "high" : "low"}
-        decoding="async"
-        referrerPolicy="no-referrer"
-        onLoad={() => setIsLoaded(true)}
-        onError={handleError}
-        className={`w-full h-auto block object-contain transition-opacity duration-300 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
-      />
+      {!hasError ? (
+        <img
+          src={currentSrc}
+          alt={alt}
+          width={278}
+          height={320}
+          loading={isPriority ? "eager" : "lazy"}
+          fetchPriority={isPriority ? "high" : "low"}
+          decoding="async"
+          onLoad={() => setIsLoaded(true)}
+          onError={handleError}
+          className={`w-full h-auto block object-contain transition-opacity duration-300 ${
+            isLoaded ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      ) : (
+        <div className="w-full h-full flex flex-col items-center justify-center p-3 text-center text-slate-400 bg-stone-50">
+          <span className="text-xs font-semibold text-slate-600">{alt}</span>
+        </div>
+      )}
     </div>
   );
 };
