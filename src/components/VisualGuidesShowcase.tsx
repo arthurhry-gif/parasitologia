@@ -86,20 +86,28 @@ export const VisualGuidesShowcase: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Rolagem horizontal automática contínua suave
+  // Rolagem horizontal automática contínua suave (sem reflow forçado: maxScroll em cache)
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
     let animationFrameId: number;
     const speed = 0.9; // pixels por frame
+    let maxScroll = el.scrollWidth / 2;
+
+    const updateMaxScroll = () => {
+      if (el) {
+        maxScroll = el.scrollWidth / 2;
+      }
+    };
+
+    window.addEventListener("resize", updateMaxScroll);
 
     const step = () => {
       if (!isHovered && el) {
         el.scrollLeft += speed;
 
-        const maxScroll = el.scrollWidth / 2;
-        if (el.scrollLeft >= maxScroll) {
+        if (maxScroll > 0 && el.scrollLeft >= maxScroll) {
           el.scrollLeft -= maxScroll;
         }
       }
@@ -110,6 +118,7 @@ export const VisualGuidesShowcase: React.FC = () => {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", updateMaxScroll);
     };
   }, [isHovered]);
 
@@ -140,10 +149,13 @@ export const VisualGuidesShowcase: React.FC = () => {
             className="w-[280px] sm:w-[340px] md:w-[380px] shrink-0 rounded-2xl bg-white border border-stone-200/90 shadow-md hover:shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
           >
             <div className="w-full bg-white flex items-center justify-center p-0">
+              {/* imagem externa não otimizável sem acesso ao arquivo-fonte — mover para hospedagem própria */}
               <img
                 src={guia.imagem}
                 alt={guia.nome}
-                loading="eager"
+                width={278}
+                height={320}
+                loading="lazy"
                 referrerPolicy="no-referrer"
                 className="w-full h-auto block object-contain"
               />
@@ -154,3 +166,4 @@ export const VisualGuidesShowcase: React.FC = () => {
     </section>
   );
 };
+

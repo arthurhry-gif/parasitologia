@@ -21,13 +21,17 @@ export const GalleryCarousel: React.FC = () => {
   const handleScroll = () => {
     const container = scrollContainerRef.current;
     if (!container) return;
-    const scrollLeft = container.scrollLeft;
-    const cardWidth = container.clientWidth * 0.85;
-    const newIndex = Math.round(scrollLeft / cardWidth);
-    if (newIndex !== activeIndex) {
-      setActiveIndex(Math.min(newIndex, GUIAS_EXEMPLO.length - 1));
-    }
+    requestAnimationFrame(() => {
+      if (!container) return;
+      const scrollLeft = container.scrollLeft;
+      const cardWidth = container.clientWidth * 0.85;
+      const newIndex = Math.round(scrollLeft / cardWidth);
+      if (newIndex !== activeIndex) {
+        setActiveIndex(Math.min(newIndex, GUIAS_EXEMPLO.length - 1));
+      }
+    });
   };
+
 
   return (
     <div id="galeria-de-imagens-de-exemplo-dos-guias" className="relative w-full max-w-5xl mx-auto">
@@ -87,6 +91,9 @@ export const GalleryCarousel: React.FC = () => {
                 <img
                   src={guia.imageUrl}
                   alt={guia.titulo}
+                  width={640}
+                  height={480}
+                  loading="lazy"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
                 />

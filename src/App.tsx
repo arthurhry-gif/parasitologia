@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from "react";
+import React, { Suspense } from "react";
 import { Check, Microscope, Scaling, BookOpen, FolderCheck, Smartphone } from "lucide-react";
 import {
   DATA_FIM_OFERTA,
@@ -11,10 +11,17 @@ import {
   LINK_CHECKOUT_COMPLETO
 } from "./config";
 import { CountdownTimer } from "./components/CountdownTimer";
-import { FaqAccordion } from "./components/FaqAccordion";
 import { PaymentIcons } from "./components/PaymentIcons";
-import { VisualGuidesShowcase } from "./components/VisualGuidesShowcase";
-import seloGarantiaImg from "./assets/images/selo_garantia_15_dias_1790042216711.jpg";
+import seloGarantiaImg from "./assets/images/selo_garantia_15_dias.webp";
+
+// Code-splitting com React.lazy para componentes pesados abaixo da dobra
+const VisualGuidesShowcase = React.lazy(() =>
+  import("./components/VisualGuidesShowcase").then((mod) => ({ default: mod.VisualGuidesShowcase }))
+);
+const FaqAccordion = React.lazy(() =>
+  import("./components/FaqAccordion").then((mod) => ({ default: mod.FaqAccordion }))
+);
+
 
 export default function App() {
   const scrollToPlanos = (e: React.MouseEvent) => {
@@ -40,21 +47,24 @@ export default function App() {
             +120 Guias Visuais com marcações inteligentes para identificar ovos, cistos e larvas com eficácia.
           </h1>
 
-          {/* IMAGEM DOS GUIAS ABAIXO DA HEADLINE */}
+          {/* IMAGEM DOS GUIAS ABAIXO DA HEADLINE (LCP OTIMIZADA) */}
           <div className="mt-6 sm:mt-8 max-w-lg sm:max-w-xl md:max-w-2xl mx-auto px-2">
             <img
-              src="/guias-hero-mockup.png"
+              src="/guias-hero-mockup.webp"
+              width={596}
+              height={419}
+              fetchPriority="high"
+              loading="eager"
               onError={(e) => {
                 // Fallback caso o browser queira carregar diretamente do postimg
                 const target = e.currentTarget;
                 if (!target.dataset.tried) {
                   target.dataset.tried = "true";
-                  target.src = "https://i.postimg.cc/nzMZTdnH/Chat-GPT-Image-21-de-set-de-2026-19-14-40-removebg-preview.png";
+                  target.src = "/guias-hero-mockup.png";
                 }
               }}
               alt="Prévia dos Guias Visuais de Parasitologia em Alta Resolução"
               className="w-full h-auto max-h-[440px] object-contain mx-auto drop-shadow-[0_15px_30px_rgba(0,0,0,0.6)]"
-              loading="eager"
             />
           </div>
 
@@ -107,7 +117,9 @@ export default function App() {
       </header>
 
       {/* SEÇÃO CARROSSEL AUTOMÁTICO: GUIAS VISUAIS MISTURADOS */}
-      <VisualGuidesShowcase />
+      <Suspense fallback={<div className="py-14 bg-[#F5EFEB] min-h-[320px]" />}>
+        <VisualGuidesShowcase />
+      </Suspense>
 
       {/* SEÇÃO 3: ESTE MATERIAL É IDEAL PARA VOCÊ QUE DESEJA (Fundo cinza-azulado muito claro com cards verde-claros e checkmarks) */}
       <section className="py-14 sm:py-20 px-4 sm:px-6 bg-[#F4F7FB] border-b border-slate-200/80 text-slate-900">
@@ -312,9 +324,11 @@ export default function App() {
             <div className="my-8 sm:my-10 flex justify-center">
               <div className="relative w-full max-w-lg sm:max-w-xl md:max-w-2xl px-2">
                 <img
-                  src="https://i.postimg.cc/nzMZTdnH/Chat-GPT-Image-21-de-set-de-2026-19-14-40-removebg-preview.png"
+                  src="/guias-hero-mockup.webp"
+                  width={596}
+                  height={419}
                   alt="Mockup do material de parasitologia em dispositivos"
-                  loading="eager"
+                  loading="lazy"
                   referrerPolicy="no-referrer"
                   className="w-full h-auto object-contain mx-auto drop-shadow-2xl hover:scale-[1.02] transition-transform duration-300"
                 />
@@ -405,6 +419,8 @@ export default function App() {
                   <img
                     src="https://i.postimg.cc/rwzj9bHy/bonus-01-guia-visual-parasitos.png"
                     alt="Guia Visual dos Parasitos Mais Cobrados nas Provas"
+                    width={300}
+                    height={400}
                     loading="lazy"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
@@ -434,6 +450,8 @@ export default function App() {
                   <img
                     src="https://i.postimg.cc/FKLxMSNX/bonus-02-pack-imagens-desafiadoras.png"
                     alt="Pack de Imagens Desafiadoras"
+                    width={300}
+                    height={400}
                     loading="lazy"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
@@ -463,6 +481,8 @@ export default function App() {
                   <img
                     src="https://i.postimg.cc/mDWSBrg8/bonus-03-questoes-comentadas.png"
                     alt="Coleção de Questões Comentadas com Imagens"
+                    width={300}
+                    height={400}
                     loading="lazy"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
@@ -492,6 +512,8 @@ export default function App() {
                   <img
                     src="https://i.postimg.cc/G3QjndwB/bonus-04-modelos-de-laudo.png"
                     alt="Modelos de Laudo Prontos"
+                    width={300}
+                    height={400}
                     loading="lazy"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
@@ -521,6 +543,8 @@ export default function App() {
                   <img
                     src="https://i.postimg.cc/QdBg77BF/bonus-05-atlas-casos-atipicos.png"
                     alt="Atlas de Casos Atípicos"
+                    width={300}
+                    height={400}
                     loading="lazy"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
@@ -550,6 +574,8 @@ export default function App() {
                   <img
                     src="https://i.postimg.cc/g2wyhhwT/acesso-vitalicio.png"
                     alt="Acesso Vitalício"
+                    width={300}
+                    height={400}
                     loading="lazy"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
@@ -776,6 +802,8 @@ export default function App() {
             <img
               src={seloGarantiaImg}
               alt="Selo de Garantia Incondicional de 15 Dias - Risco Zero"
+              width={144}
+              height={144}
               loading="lazy"
               referrerPolicy="no-referrer"
               className="w-full h-full object-contain drop-shadow-md"
@@ -992,7 +1020,9 @@ export default function App() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white text-center uppercase tracking-tight mb-8">
             PERGUNTAS FREQUENTES
           </h2>
-          <FaqAccordion />
+          <Suspense fallback={<div className="min-h-[220px]" />}>
+            <FaqAccordion />
+          </Suspense>
         </div>
       </section>
 
