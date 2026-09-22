@@ -12,12 +12,10 @@ import {
 } from "./config";
 import { CountdownTimer } from "./components/CountdownTimer";
 import { PaymentIcons } from "./components/PaymentIcons";
+import { VisualGuidesShowcase } from "./components/VisualGuidesShowcase";
 import seloGarantiaImg from "./assets/images/selo_garantia_15_dias.webp";
 
 // Code-splitting com React.lazy para componentes pesados abaixo da dobra
-const VisualGuidesShowcase = React.lazy(() =>
-  import("./components/VisualGuidesShowcase").then((mod) => ({ default: mod.VisualGuidesShowcase }))
-);
 const FaqAccordion = React.lazy(() =>
   import("./components/FaqAccordion").then((mod) => ({ default: mod.FaqAccordion }))
 );
@@ -117,9 +115,7 @@ export default function App() {
       </header>
 
       {/* SEÇÃO CARROSSEL AUTOMÁTICO: GUIAS VISUAIS MISTURADOS */}
-      <Suspense fallback={<div className="py-14 bg-[#F5EFEB] min-h-[320px]" />}>
-        <VisualGuidesShowcase />
-      </Suspense>
+      <VisualGuidesShowcase />
 
       {/* SEÇÃO 3: ESTE MATERIAL É IDEAL PARA VOCÊ QUE DESEJA (Fundo cinza-azulado muito claro com cards verde-claros e checkmarks) */}
       <section className="py-14 sm:py-20 px-4 sm:px-6 bg-[#F4F7FB] border-b border-slate-200/80 text-slate-900">
@@ -422,7 +418,6 @@ export default function App() {
                     width={300}
                     height={400}
                     loading="lazy"
-                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -453,7 +448,6 @@ export default function App() {
                     width={300}
                     height={400}
                     loading="lazy"
-                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -484,7 +478,6 @@ export default function App() {
                     width={300}
                     height={400}
                     loading="lazy"
-                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -515,7 +508,6 @@ export default function App() {
                     width={300}
                     height={400}
                     loading="lazy"
-                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -546,7 +538,6 @@ export default function App() {
                     width={300}
                     height={400}
                     loading="lazy"
-                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -577,7 +568,6 @@ export default function App() {
                     width={300}
                     height={400}
                     loading="lazy"
-                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>

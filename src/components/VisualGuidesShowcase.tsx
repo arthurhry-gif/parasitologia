@@ -155,8 +155,7 @@ export const VisualGuidesShowcase: React.FC = () => {
                 alt={guia.nome}
                 width={278}
                 height={320}
-                loading="lazy"
-                referrerPolicy="no-referrer"
+                loading="eager"
                 className="w-full h-auto block object-contain"
               />
             </div>
