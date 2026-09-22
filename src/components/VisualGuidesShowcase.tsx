@@ -28,64 +28,106 @@ export const GUIAS_ORDEM: GuiaSlide[] = [
   {
     id: "guia-01",
     nome: "Ovo de Ascaríde",
-    imagem: "/guia_ascaris.webp"
+    imagem: "https://i.postimg.cc/502HMdMV/01-ovo-de-ascaride.png"
   },
   {
     id: "guia-03",
     nome: "Ovo de Enterobius",
-    imagem: "/guia_enterobius.webp"
+    imagem: "https://i.postimg.cc/63b8Wj9V/03-ovo-de-enterobius.png"
   },
   {
     id: "guia-09",
     nome: "Oocisto de Cryptosporidium",
-    imagem: "/guia_cryptosporidium.webp"
+    imagem: "https://i.postimg.cc/WzQtrdqF/09-oocisto-de-cryptosporidium.png"
   },
   {
     id: "guia-12",
     nome: "Larva de Ancilostoma",
-    imagem: "/guia_ancilostoma.webp"
+    imagem: "https://i.postimg.cc/c1jvPb9p/12-larva-de-ancilostoma.png"
   },
   {
     id: "guia-05",
     nome: "Ovo de Hymenolepis",
-    imagem: "/guia_hymenolepis.webp"
+    imagem: "https://i.postimg.cc/dtyhFjgT/05-ovo-de-hymenolepis.png"
   },
   {
     id: "guia-02",
     nome: "Ovo de Trichuris",
-    imagem: "/guia_trichuris.webp"
+    imagem: "https://i.postimg.cc/dVRDktqz/02-ovo-de-trichuris.png"
   },
   {
     id: "guia-06",
     nome: "Ovo de Schistosoma",
-    imagem: "/guia_schistosoma.webp"
+    imagem: "https://i.postimg.cc/yNVxF4x0/06-ovo-de-schistosoma.png"
   },
   {
     id: "guia-10",
     nome: "Larva Rabditoide",
-    imagem: "/guia_larva_rabditoide.webp"
+    imagem: "https://i.postimg.cc/FRzKByjs/10-larva-rabditoide.png"
   },
   {
     id: "guia-07",
     nome: "Cisto de Giárdia",
-    imagem: "/guia_giardia.webp"
+    imagem: "https://i.postimg.cc/5yF2xfKH/07-cisto-de-giardia.png"
   },
   {
     id: "guia-04",
     nome: "Ovo de Tênia",
-    imagem: "/guia_tenia.webp"
+    imagem: "https://i.postimg.cc/c4wfhWxh/04-ovo-de-tenia.png"
   },
   {
     id: "guia-11",
     nome: "Larva Filaríoide",
-    imagem: "/guia_larva_filarioide.webp"
+    imagem: "https://i.postimg.cc/pLvz1Syf/11-larva-filarioide.png"
   },
   {
     id: "guia-08",
     nome: "Cisto de Entamoeba",
-    imagem: "/guia_entamoeba.webp"
+    imagem: "https://i.postimg.cc/cJ4Yd8Rs/08-cisto-de-entamoeba.png"
   },
 ];
+
+const CarouselSlideImage: React.FC<{
+  src: string;
+  alt: string;
+  isPriority: boolean;
+}> = ({ src, alt, isPriority }) => {
+  const [currentSrc, setCurrentSrc] = useState(src);
+  const [retryCount, setRetryCount] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const handleError = () => {
+    if (retryCount < 3) {
+      setTimeout(() => {
+        setRetryCount((prev) => prev + 1);
+        setCurrentSrc(`${src}?r=${Date.now()}`);
+      }, 1000 * (retryCount + 1));
+    }
+  };
+
+  return (
+    <div className="relative w-full aspect-[278/320] bg-stone-100/60 flex items-center justify-center overflow-hidden">
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-stone-200/50 animate-pulse" />
+      )}
+      <img
+        src={currentSrc}
+        alt={alt}
+        width={278}
+        height={320}
+        loading={isPriority ? "eager" : "lazy"}
+        fetchPriority={isPriority ? "high" : "low"}
+        decoding="async"
+        referrerPolicy="no-referrer"
+        onLoad={() => setIsLoaded(true)}
+        onError={handleError}
+        className={`w-full h-auto block object-contain transition-opacity duration-300 ${
+          isLoaded ? "opacity-100" : "opacity-0"
+        }`}
+      />
+    </div>
+  );
+};
 
 export const VisualGuidesShowcase: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -154,15 +196,10 @@ export const VisualGuidesShowcase: React.FC = () => {
             className="w-[280px] sm:w-[340px] md:w-[380px] shrink-0 rounded-2xl bg-white border border-stone-200/90 shadow-md hover:shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
           >
             <div className="w-full bg-white flex items-center justify-center p-0">
-              {/* imagem externa não otimizável sem acesso ao arquivo-fonte — mover para hospedagem própria */}
-              <img
+              <CarouselSlideImage
                 src={guia.imagem}
                 alt={guia.nome}
-                width={278}
-                height={320}
-                loading="eager"
-                decoding="async"
-                className="w-full h-auto block object-contain"
+                isPriority={index < 2}
               />
             </div>
           </div>

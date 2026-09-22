@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { Check, Microscope, Scaling, BookOpen, FolderCheck, Smartphone } from "lucide-react";
 import {
   DATA_FIM_OFERTA,
@@ -20,6 +20,46 @@ const FaqAccordion = React.lazy(() =>
   import("./components/FaqAccordion").then((mod) => ({ default: mod.FaqAccordion }))
 );
 
+const BonusItemImage: React.FC<{
+  src: string;
+  alt: string;
+}> = ({ src, alt }) => {
+  const [currentSrc, setCurrentSrc] = useState(src);
+  const [retryCount, setRetryCount] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const handleError = () => {
+    if (retryCount < 3) {
+      setTimeout(() => {
+        setRetryCount((prev) => prev + 1);
+        setCurrentSrc(`${src}?r=${Date.now()}`);
+      }, 1000 * (retryCount + 1));
+    }
+  };
+
+  return (
+    <div className="w-full aspect-[3/4] mb-4 rounded-xl overflow-hidden border border-slate-200/80 bg-[#EFE9E2] relative">
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-slate-200/60 animate-pulse" />
+      )}
+      <img
+        src={currentSrc}
+        alt={alt}
+        width={300}
+        height={400}
+        loading="lazy"
+        decoding="async"
+        referrerPolicy="no-referrer"
+        onLoad={() => setIsLoaded(true)}
+        onError={handleError}
+        className={`w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-300 ${
+          isLoaded ? "opacity-100" : "opacity-0"
+        }`}
+      />
+    </div>
+  );
+};
+
 // ============================================================================
 // CONFIGURAÇÃO DOS 6 BÔNUS EXCLUSIVOS
 // Para usar arquivos locais (recomendado para 100% de estabilidade no celular),
@@ -31,7 +71,7 @@ export const BONUS_ITEMS = [
     titulo: "Guia Visual dos Parasitos Mais Cobrados nas Provas",
     descricao:
       "Reúne os principais parasitos, com ovos, cistos e larvas destacados sobre imagens reais, permitindo uma revisão rápida dos pontos mais recorrentes nas avaliações práticas.",
-    imagem: "/bonus_01.webp",
+    imagem: "https://i.postimg.cc/rwzj9bHy/bonus-01-guia-visual-parasitos.png",
     valorOriginal: "R$27",
   },
   {
@@ -39,7 +79,7 @@ export const BONUS_ITEMS = [
     titulo: "Pack de Imagens Desafiadoras",
     descricao:
       "Seleção de imagens com maior nível de dificuldade, semelhantes às encontradas nas provas práticas. Inclui correção visual comentada e indicação dos detalhes decisivos.",
-    imagem: "/bonus_02.webp",
+    imagem: "https://i.postimg.cc/FKLxMSNX/bonus-02-pack-imagens-desafiadoras.png",
     valorOriginal: "R$27",
   },
   {
@@ -47,7 +87,7 @@ export const BONUS_ITEMS = [
     titulo: "Coleção de Questões Comentadas com Imagens",
     descricao:
       "Questões no estilo das provas práticas de Parasitologia, acompanhadas de comentários visuais explicando o raciocínio utilizado para chegar à resposta correta.",
-    imagem: "/bonus_03.webp",
+    imagem: "https://i.postimg.cc/mDWSBrg8/bonus-03-questoes-comentadas.png",
     valorOriginal: "R$27",
   },
   {
@@ -55,7 +95,7 @@ export const BONUS_ITEMS = [
     titulo: "Modelos de Laudo Prontos",
     descricao:
       "Frases e formatos padronizados para descrever cada achado no laudo, prontos para usar — economiza tempo na rotina do laboratório.",
-    imagem: "/bonus_04.webp",
+    imagem: "https://i.postimg.cc/G3QjndwB/bonus-04-modelos-de-laudo.png",
     valorOriginal: "R$27",
   },
   {
@@ -63,7 +103,7 @@ export const BONUS_ITEMS = [
     titulo: "Atlas de Casos Atípicos",
     descricao:
       'Lâminas reais que fogem do "modelo de livro" — os casos que realmente geram dúvida na bancada. Ideal para quem já passou do básico.',
-    imagem: "/bonus_05.webp",
+    imagem: "https://i.postimg.cc/QdBg77BF/bonus-05-atlas-casos-atipicos.png",
     valorOriginal: "R$27",
   },
   {
@@ -71,7 +111,7 @@ export const BONUS_ITEMS = [
     titulo: "Acesso Vitalício",
     descricao:
       "Todos os guias organizados para estudo em qualquer dispositivo, com acesso para sempre, permitindo revisar o conteúdo em intervalos entre aulas, deslocamentos ou momentos livres.",
-    imagem: "/bonus_06.webp",
+    imagem: "https://i.postimg.cc/g2wyhhwT/acesso-vitalicio.png",
     valorOriginal: "R$27",
   },
 ];
@@ -469,17 +509,7 @@ export default function App() {
               >
                 <div>
                   {/* IMAGEM DO BÔNUS */}
-                  <div className="w-full aspect-[3/4] mb-4 rounded-xl overflow-hidden border border-slate-200/80 bg-[#EFE9E2]">
-                    <img
-                      src={bonus.imagem}
-                      alt={bonus.titulo}
-                      width={300}
-                      height={400}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
+                  <BonusItemImage src={bonus.imagem} alt={bonus.titulo} />
 
                   <h4 className="text-lg font-bold text-slate-900 leading-snug">
                     {bonus.titulo}
