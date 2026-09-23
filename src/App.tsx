@@ -143,7 +143,7 @@ export default function App() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-12 sm:pb-16 text-center">
           {/* TÍTULO PRINCIPAL / PROMESSA EM DESTAQUE */}
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white max-w-4xl mx-auto leading-tight sm:leading-none tracking-tight">
-            +120 Guias Visuais com marcações inteligentes para identificar ovos, cistos e larvas com eficácia.
+            +120 Guias Visuais de Parasitologia.
           </h1>
 
           {/* IMAGEM DOS GUIAS ABAIXO DA HEADLINE (LCP OTIMIZADA) */}
