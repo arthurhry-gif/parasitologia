@@ -6,11 +6,9 @@
 import React, { Suspense, useState } from "react";
 import { Check, Microscope, Scaling, BookOpen, FolderCheck, Smartphone } from "lucide-react";
 import {
-  DATA_FIM_OFERTA,
   LINK_CHECKOUT_BASICO,
   LINK_CHECKOUT_COMPLETO
 } from "./config";
-import { CountdownTimer } from "./components/CountdownTimer";
 import { PaymentIcons } from "./components/PaymentIcons";
 import { VisualGuidesShowcase } from "./components/VisualGuidesShowcase";
 import seloGarantiaImg from "./assets/images/selo_garantia_15_dias.webp";
@@ -316,11 +314,6 @@ export default function App() {
           <p className="mt-3 text-base sm:text-lg text-amber-100 font-bold">
             Aproveite a oferta por tempo limitado.
           </p>
-
-          {/* CONTADOR REGRESSIVO REAL */}
-          <div className="mt-6">
-            <CountdownTimer targetDateIso={DATA_FIM_OFERTA} size="lg" />
-          </div>
 
           {/* BOTÃO CTA 2 */}
           <div className="mt-8">

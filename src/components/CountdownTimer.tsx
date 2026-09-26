@@ -49,15 +49,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
   }, [targetDateIso]);
 
   if (time.isExpired) {
-    return (
-      <div
-        id="contador-regressivo-expirado"
-        className={`inline-flex items-center justify-center px-6 py-3 rounded-xl bg-red-950/70 border border-red-500/40 text-red-200 font-bold tracking-wide shadow-lg ${className}`}
-      >
-        <span className="inline-block w-2.5 h-2.5 rounded-full bg-red-500 mr-2 animate-pulse"></span>
-        Oferta encerrada
-      </div>
-    );
+    return null;
   }
 
   const pad = (n: number) => String(n).padStart(2, "0");
