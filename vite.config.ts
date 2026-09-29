@@ -20,11 +20,11 @@ export default defineConfig(() => {
     ],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve(import.meta.dirname, '.'),
       },
     },
     build: {
-      target: 'es2020',
+      target: 'es2022',
       cssCodeSplit: true,
       rollupOptions: {
         output: {

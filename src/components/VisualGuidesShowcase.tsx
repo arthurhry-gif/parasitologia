@@ -22,37 +22,37 @@ export const GUIAS_ORDEM: GuiaSlide[] = [
   {
     id: "guia-01",
     nome: "Schistosoma mansoni (Foto Real)",
-    imagem: "/images/01-schistosoma-foto-real.png",
+    imagem: "/images/01-schistosoma-foto-real.webp",
     fallback: "https://i.postimg.cc/pVzmPN76/01-schistosoma-foto-real.png"
   },
   {
     id: "guia-02",
     nome: "Giardia lamblia (Foto Real)",
-    imagem: "/images/02-giardia-foto-real.png",
+    imagem: "/images/02-giardia-foto-real.webp",
     fallback: "https://i.postimg.cc/zvFDKNYD/02-giardia-foto-real.png"
   },
   {
     id: "guia-03",
     nome: "Taenia sp. (Foto Real)",
-    imagem: "/images/03-taenia-foto-real.png",
+    imagem: "/images/03-taenia-foto-real.webp",
     fallback: "https://i.postimg.cc/cHQdGWCN/03-taenia-foto-real.png"
   },
   {
     id: "guia-04",
     nome: "Larva Rabditoide (Foto Real)",
-    imagem: "/images/04-rabditoide-foto-real.png",
+    imagem: "/images/04-rabditoide-foto-real.webp",
     fallback: "https://i.postimg.cc/fTbQBmxH/04-rabditoide-foto-real.png"
   },
   {
     id: "guia-05",
     nome: "Larva Filarioide (Foto Real)",
-    imagem: "/images/05-filarioide-foto-real.png",
+    imagem: "/images/05-filarioide-foto-real.webp",
     fallback: "https://i.postimg.cc/DySYSgrH/05-filarioide-foto-real.png"
   },
   {
     id: "guia-06",
     nome: "Comparação entre Parasitos (Fotos Reais)",
-    imagem: "/images/06-comparacao-fotos-reais.png",
+    imagem: "/images/06-comparacao-fotos-reais.webp",
     fallback: "https://i.postimg.cc/jj4MpkT8/06-comparacao-fotos-reais.png"
   }
 ];
@@ -61,8 +61,8 @@ const CarouselSlideImage: React.FC<{
   src: string;
   fallback?: string;
   alt: string;
-  isPriority: boolean;
-}> = ({ src, fallback, alt, isPriority }) => {
+  isPriority?: boolean;
+}> = ({ src, fallback, alt, isPriority = false }) => {
   const [currentSrc, setCurrentSrc] = useState(src);
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -74,10 +74,10 @@ const CarouselSlideImage: React.FC<{
   }, [src]);
 
   const handleError = () => {
-    if (fallback && currentSrc !== fallback) {
-      setCurrentSrc(fallback);
-    } else if (currentSrc.endsWith(".webp")) {
+    if (currentSrc.endsWith(".webp")) {
       setCurrentSrc(currentSrc.replace(".webp", ".png"));
+    } else if (fallback && currentSrc !== fallback) {
+      setCurrentSrc(fallback);
     } else {
       setHasError(true);
     }
@@ -117,26 +117,46 @@ export const VisualGuidesShowcase: React.FC = () => {
   const isInteractingRef = useRef(false);
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Rolagem horizontal automática contínua suave e infinita
+  // Rolagem horizontal contínua e suave otimizada sem layout thrashing
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
     let animationFrameId: number;
-    const speed = 1.0; // pixels por frame (suave e consistente em qualquer tela)
+    let isVisible = false;
+    const speed = 1.0;
     let currentPos = el.scrollLeft;
+    let cachedHalfWidth = el.scrollWidth > 0 ? el.scrollWidth / 2 : 0;
+
+    // Recalcula cachedHalfWidth apenas em resize, evitando medições síncronas de layout a cada frame
+    const updateDimensions = () => {
+      if (el && el.scrollWidth > 0) {
+        cachedHalfWidth = el.scrollWidth / 2;
+      }
+    };
+    window.addEventListener("resize", updateDimensions, { passive: true });
+
+    // IntersectionObserver: pausa o loop de animação quando o carrossel não está visível na tela
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        isVisible = entry ? entry.isIntersecting : false;
+        if (isVisible && cachedHalfWidth === 0 && el) {
+          cachedHalfWidth = el.scrollWidth / 2;
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(el);
 
     const step = () => {
-      if (!isInteractingRef.current && el) {
+      if (isVisible && !isInteractingRef.current && el) {
         currentPos += speed;
-        const halfWidth = el.scrollWidth / 2;
-
-        if (halfWidth > 0 && currentPos >= halfWidth) {
-          currentPos -= halfWidth;
+        if (cachedHalfWidth > 0 && currentPos >= cachedHalfWidth) {
+          currentPos -= cachedHalfWidth;
         }
         el.scrollLeft = currentPos;
-      } else if (el) {
-        // Mantém a posição interna sincronizada com o arraste manual do usuário
+      } else if (el && isInteractingRef.current) {
         currentPos = el.scrollLeft;
       }
       animationFrameId = requestAnimationFrame(step);
@@ -169,6 +189,8 @@ export const VisualGuidesShowcase: React.FC = () => {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
+      window.removeEventListener("resize", updateDimensions);
       if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
       el.removeEventListener("touchstart", onTouchStart);
       el.removeEventListener("touchend", onTouchEnd);
