@@ -167,7 +167,7 @@ export default function App() {
 
           {/* TEXTO DESCRITIVO ABAIXO DO MOCKUP */}
           <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-slate-200 font-normal leading-relaxed text-center px-4">
-            Você receberá <strong className="text-white font-bold">+120 guias visuais em alta resolução</strong>, com marcações que destacam ovos, cistos e larvas para facilitar a identificação dos parasitos. Prepare-se para a prova prática ou consulte na bancada do laboratório com confiança e segurança!
+            Revise para a prova prática ou consulte no laboratório, direto pelo celular.
           </p>
 
           {/* CHECKLIST DO HERO */}
@@ -485,73 +485,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* SEÇÃO 7: BÔNUS EXCLUSIVOS (7: BRANCO) */}
-      <section className="py-12 sm:py-16 px-4 sm:px-6 bg-[#FFFFFF] border-b border-slate-200 text-slate-900">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-10">
-            <h3 className="text-lg sm:text-xl font-black text-amber-700 uppercase tracking-wide">
-              E NÃO PARA POR AÍ... TEM MAIS!
-            </h3>
-            <p className="text-slate-600 text-sm sm:text-base mt-1">
-              Você também vai receber…
-            </p>
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-950 uppercase tracking-tight mt-2">
-              🎁 6 BÔNUS EXCLUSIVOS
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {BONUS_ITEMS.map((bonus) => (
-              <div
-                key={bonus.id}
-                className="p-6 rounded-2xl bg-slate-50 border border-slate-200/90 hover:border-amber-400/60 flex flex-col justify-between shadow-xs transition-all hover:shadow-md group"
-              >
-                <div>
-                  {/* IMAGEM DO BÔNUS */}
-                  <BonusItemImage src={bonus.imagem} alt={bonus.titulo} />
-
-                  <h4 className="text-lg font-bold text-slate-900 leading-snug">
-                    {bonus.titulo}
-                  </h4>
-                  <p className="mt-2.5 text-sm text-slate-600 leading-relaxed">
-                    {bonus.descricao}
-                  </p>
-                </div>
-                <div className="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between">
-                  <span className="text-xs text-slate-400 line-through">Valor: {bonus.valorOriginal}</span>
-                  <span className="text-sm font-extrabold text-amber-800 bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
-                    GRÁTIS
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SEÇÃO 8: APROVEITE ENQUANTO O PLANO COMPLETO ESTÁ EM PROMOÇÃO (8: LARANJA) */}
-      <section className="py-10 sm:py-14 px-4 sm:px-6 bg-[#EA580C] border-b border-orange-700/60 text-white text-center">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-tight">
-            Aproveite enquanto o Plano Completo está em promoção!
-          </h2>
-          <p className="mt-2 text-sm sm:text-base text-orange-100 font-medium">
-            Garanta sua segurança e confiança nas provas práticas.
-          </p>
-
-          <div className="mt-6">
-            <a
-              href="#escolha-a-opcao-ideal-para-voce"
-              onClick={scrollToPlanos}
-              className="inline-block w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:via-green-400 hover:to-emerald-500 text-slate-950 font-black text-base sm:text-xl tracking-wide uppercase shadow-2xl active:scale-[0.98] transition-all cursor-pointer text-center"
-            >
-              QUERO GARANTIR O MEU AGORA
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* SEÇÃO 9: ESCOLHA A OPÇÃO IDEAL PARA VOCÊ (FUNDO BRANCO) */}
+      {/* SEÇÃO DE PLANOS: ESCOLHA A OPÇÃO IDEAL PARA VOCÊ (FUNDO BRANCO) */}
       <section
         id="escolha-a-opcao-ideal-para-voce"
         className="py-14 sm:py-20 px-4 sm:px-6 bg-white border-b border-slate-200 relative scroll-mt-6 text-slate-900"
@@ -701,6 +635,72 @@ export default function App() {
               Meios de pagamento
             </p>
             <PaymentIcons />
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO 7: BÔNUS EXCLUSIVOS (7: BRANCO) */}
+      <section className="py-12 sm:py-16 px-4 sm:px-6 bg-[#FFFFFF] border-b border-slate-200 text-slate-900">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <h3 className="text-lg sm:text-xl font-black text-amber-700 uppercase tracking-wide">
+              E NÃO PARA POR AÍ... TEM MAIS!
+            </h3>
+            <p className="text-slate-600 text-sm sm:text-base mt-1">
+              Você também vai receber…
+            </p>
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-950 uppercase tracking-tight mt-2">
+              🎁 6 BÔNUS EXCLUSIVOS
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {BONUS_ITEMS.map((bonus) => (
+              <div
+                key={bonus.id}
+                className="p-6 rounded-2xl bg-slate-50 border border-slate-200/90 hover:border-amber-400/60 flex flex-col justify-between shadow-xs transition-all hover:shadow-md group"
+              >
+                <div>
+                  {/* IMAGEM DO BÔNUS */}
+                  <BonusItemImage src={bonus.imagem} alt={bonus.titulo} />
+
+                  <h4 className="text-lg font-bold text-slate-900 leading-snug">
+                    {bonus.titulo}
+                  </h4>
+                  <p className="mt-2.5 text-sm text-slate-600 leading-relaxed">
+                    {bonus.descricao}
+                  </p>
+                </div>
+                <div className="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between">
+                  <span className="text-xs text-slate-400 line-through">Valor: {bonus.valorOriginal}</span>
+                  <span className="text-sm font-extrabold text-amber-800 bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
+                    GRÁTIS
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO 8: APROVEITE ENQUANTO O PLANO COMPLETO ESTÁ EM PROMOÇÃO (8: LARANJA) */}
+      <section className="py-10 sm:py-14 px-4 sm:px-6 bg-[#EA580C] border-b border-orange-700/60 text-white text-center">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-tight">
+            Aproveite enquanto o Plano Completo está em promoção!
+          </h2>
+          <p className="mt-2 text-sm sm:text-base text-orange-100 font-medium">
+            Garanta sua segurança e confiança nas provas práticas.
+          </p>
+
+          <div className="mt-6">
+            <a
+              href="#escolha-a-opcao-ideal-para-voce"
+              onClick={scrollToPlanos}
+              className="inline-block w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:via-green-400 hover:to-emerald-500 text-slate-950 font-black text-base sm:text-xl tracking-wide uppercase shadow-2xl active:scale-[0.98] transition-all cursor-pointer text-center"
+            >
+              QUERO GARANTIR O MEU AGORA
+            </a>
           </div>
         </div>
       </section>
