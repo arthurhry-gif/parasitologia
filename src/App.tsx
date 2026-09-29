@@ -223,83 +223,53 @@ export default function App() {
             ESTE MATERIAL É IDEAL PARA VOCÊ QUE DESEJA
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {/* Card 1 */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-[#EAF5EC] border border-[#CDE5D2] shadow-xs flex flex-col justify-start transition-all hover:shadow-md">
-              <div className="flex items-start gap-3">
-                <Check className="w-6 h-6 text-[#2E9B56] shrink-0 stroke-[3] mt-0.5" />
-                <h3 className="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight leading-snug">
-                  PARAR DE CONFUNDIR PARASITOS
-                </h3>
-              </div>
-              <p className="mt-3.5 pl-9 text-sm sm:text-[15px] font-medium text-slate-700 leading-relaxed">
-                Identificar rapidamente as lâminas com segurança e confiança durante as provas práticas.
-              </p>
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#EAF5EC] border border-[#CDE5D2] shadow-xs flex items-center gap-3.5 transition-all hover:shadow-md">
+              <Check className="w-6 h-6 text-[#2E9B56] shrink-0 stroke-[3]" />
+              <h3 className="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight leading-snug">
+                PARAR DE CONFUNDIR PARASITOS
+              </h3>
             </div>
 
             {/* Card 2 */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-[#EAF5EC] border border-[#CDE5D2] shadow-xs flex flex-col justify-start transition-all hover:shadow-md">
-              <div className="flex items-start gap-3">
-                <Check className="w-6 h-6 text-[#2E9B56] shrink-0 stroke-[3] mt-0.5" />
-                <h3 className="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight leading-snug">
-                  DESENVOLVER O OLHO CLÍNICO
-                </h3>
-              </div>
-              <p className="mt-3.5 pl-9 text-sm sm:text-[15px] font-medium text-slate-700 leading-relaxed">
-                Aprender a observar os detalhes que realmente importam e diferenciam cada parasito.
-              </p>
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#EAF5EC] border border-[#CDE5D2] shadow-xs flex items-center gap-3.5 transition-all hover:shadow-md">
+              <Check className="w-6 h-6 text-[#2E9B56] shrink-0 stroke-[3]" />
+              <h3 className="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight leading-snug">
+                DESENVOLVER O OLHO CLÍNICO
+              </h3>
             </div>
 
             {/* Card 3 */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-[#EAF5EC] border border-[#CDE5D2] shadow-xs flex flex-col justify-start transition-all hover:shadow-md">
-              <div className="flex items-start gap-3">
-                <Check className="w-6 h-6 text-[#2E9B56] shrink-0 stroke-[3] mt-0.5" />
-                <h3 className="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight leading-snug">
-                  REVISAR DE FORMA EFICAZ
-                </h3>
-              </div>
-              <p className="mt-3.5 pl-9 text-sm sm:text-[15px] font-medium text-slate-700 leading-relaxed">
-                Ter materiais organizados para revisar em qualquer lugar e a qualquer hora.
-              </p>
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#EAF5EC] border border-[#CDE5D2] shadow-xs flex items-center gap-3.5 transition-all hover:shadow-md">
+              <Check className="w-6 h-6 text-[#2E9B56] shrink-0 stroke-[3]" />
+              <h3 className="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight leading-snug">
+                REVISAR DE FORMA EFICAZ
+              </h3>
             </div>
 
             {/* Card 4 */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-[#EAF5EC] border border-[#CDE5D2] shadow-xs flex flex-col justify-start transition-all hover:shadow-md">
-              <div className="flex items-start gap-3">
-                <Check className="w-6 h-6 text-[#2E9B56] shrink-0 stroke-[3] mt-0.5" />
-                <h3 className="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight leading-snug">
-                  PREPARAR-SE PARA AS PROVAS
-                </h3>
-              </div>
-              <p className="mt-3.5 pl-9 text-sm sm:text-[15px] font-medium text-slate-700 leading-relaxed">
-                Sentir-se pronta e confiante para a primeira prova prática de Parasitologia.
-              </p>
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#EAF5EC] border border-[#CDE5D2] shadow-xs flex items-center gap-3.5 transition-all hover:shadow-md">
+              <Check className="w-6 h-6 text-[#2E9B56] shrink-0 stroke-[3]" />
+              <h3 className="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight leading-snug">
+                PREPARAR-SE PARA AS PROVAS
+              </h3>
             </div>
 
             {/* Card 5 */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-[#EAF5EC] border border-[#CDE5D2] shadow-xs flex flex-col justify-start transition-all hover:shadow-md">
-              <div className="flex items-start gap-3">
-                <Check className="w-6 h-6 text-[#2E9B56] shrink-0 stroke-[3] mt-0.5" />
-                <h3 className="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight leading-snug">
-                  EVITAR ERROS COMUNS
-                </h3>
-              </div>
-              <p className="mt-3.5 pl-9 text-sm sm:text-[15px] font-medium text-slate-700 leading-relaxed">
-                Saber os principais erros de identificação e como evitá-los.
-              </p>
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#EAF5EC] border border-[#CDE5D2] shadow-xs flex items-center gap-3.5 transition-all hover:shadow-md">
+              <Check className="w-6 h-6 text-[#2E9B56] shrink-0 stroke-[3]" />
+              <h3 className="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight leading-snug">
+                EVITAR ERROS COMUNS
+              </h3>
             </div>
 
             {/* Card 6 */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-[#EAF5EC] border border-[#CDE5D2] shadow-xs flex flex-col justify-start transition-all hover:shadow-md">
-              <div className="flex items-start gap-3">
-                <Check className="w-6 h-6 text-[#2E9B56] shrink-0 stroke-[3] mt-0.5" />
-                <h3 className="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight leading-snug">
-                  APROVEITAR O TEMPO DE ESTUDO
-                </h3>
-              </div>
-              <p className="mt-3.5 pl-9 text-sm sm:text-[15px] font-medium text-slate-700 leading-relaxed">
-                Economizar tempo com materiais prontos e de fácil entendimento.
-              </p>
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#EAF5EC] border border-[#CDE5D2] shadow-xs flex items-center gap-3.5 transition-all hover:shadow-md">
+              <Check className="w-6 h-6 text-[#2E9B56] shrink-0 stroke-[3]" />
+              <h3 className="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight leading-snug">
+                APROVEITAR O TEMPO DE ESTUDO
+              </h3>
             </div>
           </div>
         </div>
