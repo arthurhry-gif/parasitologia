@@ -129,6 +129,14 @@ export default function App() {
     }
   };
 
+  const scrollToCarrossel = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const el = document.getElementById("carrossel-guias");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <div className="min-h-screen text-slate-100 font-['Poppins'] selection:bg-amber-400 selection:text-black">
       {/* FAIXA LARANJA DE AVISO NO TOPO */}
@@ -199,11 +207,11 @@ export default function App() {
           {/* BOTÃO CTA 1 */}
           <div className="mt-8">
             <a
-              href="#escolha-a-opcao-ideal-para-voce"
-              onClick={scrollToPlanos}
+              href="#carrossel-guias"
+              onClick={scrollToCarrossel}
               className="inline-block w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:via-green-400 hover:to-emerald-500 text-slate-950 font-black text-base sm:text-xl tracking-wide uppercase shadow-lg shadow-emerald-500/25 active:scale-[0.98] transition-all cursor-pointer text-center"
             >
-              QUERO ACESSAR OS GUIAS
+              Ver o material por dentro
             </a>
             <p className="mt-3 text-xs sm:text-sm font-medium text-slate-400 flex items-center justify-center gap-1.5">
               <span>📲</span>
@@ -497,13 +505,13 @@ export default function App() {
                   de <span className="line-through">R$77,90</span> por:
                 </p>
                 <p className="text-3xl sm:text-4xl font-black text-slate-950 mt-1">
-                  R$ 27,90
+                  R$ 19,90
                 </p>
                 <p className="text-xs font-semibold text-slate-600 mt-0.5">
-                  ou 4x de R$7,25
+                  ou 2x de R$10,35
                 </p>
                 <p className="mt-2 text-xs font-bold text-amber-900 bg-amber-100/90 inline-block px-2.5 py-1 rounded border border-amber-300">
-                  Você economiza R$ 50,00
+                  Você economiza R$ 58,00
                 </p>
 
                 <div className="mt-6">
@@ -576,13 +584,13 @@ export default function App() {
                   de <span className="line-through">R$137,90</span> por:
                 </p>
                 <p className="text-3xl sm:text-4xl font-black text-emerald-400 mt-1">
-                  R$ 37,90
+                  R$ 27,90
                 </p>
                 <p className="text-xs font-semibold text-slate-300 mt-0.5">
-                  ou 6x de R$6,65
+                  ou 4x de R$7,25
                 </p>
                 <p className="mt-2 text-xs font-bold text-emerald-300 bg-emerald-950/80 inline-block px-2.5 py-1 rounded border border-emerald-500/40">
-                  Você economiza R$ 100,00
+                  Você economiza R$ 110,00
                 </p>
 
                 <div className="mt-6">

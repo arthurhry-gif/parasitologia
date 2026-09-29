@@ -203,7 +203,7 @@ export const VisualGuidesShowcase: React.FC = () => {
   const items = [...GUIAS_ORDEM, ...GUIAS_ORDEM];
 
   return (
-    <section className="py-12 sm:py-16 bg-[#F5EFEB] border-b border-[#E2D8CE] text-slate-900 overflow-hidden">
+    <section id="carrossel-guias" className="py-12 sm:py-16 bg-[#F5EFEB] border-b border-[#E2D8CE] text-slate-900 overflow-hidden scroll-mt-6">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 mb-8 text-center">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 leading-tight tracking-tight uppercase">
           Veja alguns dos guias visuais que estarão na sua mão durante o estudo ou no laboratório.
