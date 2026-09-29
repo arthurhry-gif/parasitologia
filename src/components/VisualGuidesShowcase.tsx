@@ -4,110 +4,87 @@ interface GuiaSlide {
   id: string;
   nome: string;
   imagem: string;
+  fallback?: string;
 }
 
 // Imagens na ordem exata dos links enviados pelo usuário:
-// 1. https://postimg.cc/yJ26FGdQ -> 01 - Ovo de Ascaríde
-// 2. https://postimg.cc/WFrNS7qt -> 03 - Ovo de Enterobius
-// 3. https://postimg.cc/2L7zN8wr -> 09 - Oocisto de Cryptosporidium
-// 4. https://postimg.cc/7b3P2my9 -> 12 - Larva de Ancilostoma
-// 5. https://postimg.cc/fJMzjmzw -> 05 - Ovo de Hymenolepis
-// 6. https://postimg.cc/zyBq4NHj -> 02 - Ovo de Trichuris
-// 7. https://postimg.cc/gxTGW7v0 -> 06 - Ovo de Schistosoma
-// 8. https://postimg.cc/LYdRqZCr -> 10 - Larva Rabditoide
-// 9. https://postimg.cc/PvTjynjh -> 07 - Cisto de Giárdia
-// 10. https://postimg.cc/VdsSs3b0 -> 04 - Ovo de Tênia
-// 11. https://postimg.cc/pp0mmqfr -> 11 - Larva Filaríoide
-// 12. https://postimg.cc/qNSgLqDY -> 08 - Cisto de Entamoeba
+// 1. https://postimg.cc/4n4f10X6 -> 01 - Schistosoma (Foto Real)
+// 2. https://postimg.cc/vxDdwpmC -> 02 - Giardia (Foto Real)
+// 3. https://postimg.cc/HcsqbfbS -> 03 - Taenia (Foto Real)
+// 4. https://postimg.cc/23gt5q9v -> 04 - Larva Rabditoide (Foto Real)
+// 5. https://postimg.cc/svRJ8504 -> 05 - Larva Filarioide (Foto Real)
+// 6. https://postimg.cc/jWC6NcLN -> 06 - Comparação entre Parasitos (Fotos Reais)
 // ============================================================================
 // CONFIGURAÇÃO DOS GUIAS VISUAIS DO CARROSSEL
 // Arquivos locais armazenados em /public/images/
-// Para substituir qualquer imagem, basta colocar o novo arquivo com o mesmo nome em /public/images/
 // ============================================================================
 export const GUIAS_ORDEM: GuiaSlide[] = [
   {
     id: "guia-01",
-    nome: "Ovo de Ascaríde",
-    imagem: "/images/01-ovo-de-ascaride.webp" // Arquivo local em: public/images/01-ovo-de-ascaride.webp
-  },
-  {
-    id: "guia-03",
-    nome: "Ovo de Enterobius",
-    imagem: "/images/03-ovo-de-enterobius.webp" // Arquivo local em: public/images/03-ovo-de-enterobius.webp
-  },
-  {
-    id: "guia-09",
-    nome: "Oocisto de Cryptosporidium",
-    imagem: "/images/09-oocisto-de-cryptosporidium.webp" // Arquivo local em: public/images/09-oocisto-de-cryptosporidium.webp
-  },
-  {
-    id: "guia-12",
-    nome: "Larva de Ancilostoma",
-    imagem: "/images/12-larva-de-ancilostoma.webp" // Arquivo local em: public/images/12-larva-de-ancilostoma.webp
-  },
-  {
-    id: "guia-05",
-    nome: "Ovo de Hymenolepis",
-    imagem: "/images/05-ovo-de-hymenolepis.webp" // Arquivo local em: public/images/05-ovo-de-hymenolepis.webp
+    nome: "Schistosoma mansoni (Foto Real)",
+    imagem: "/images/01-schistosoma-foto-real.png",
+    fallback: "https://i.postimg.cc/pVzmPN76/01-schistosoma-foto-real.png"
   },
   {
     id: "guia-02",
-    nome: "Ovo de Trichuris",
-    imagem: "/images/02-ovo-de-trichuris.webp" // Arquivo local em: public/images/02-ovo-de-trichuris.webp
+    nome: "Giardia lamblia (Foto Real)",
+    imagem: "/images/02-giardia-foto-real.png",
+    fallback: "https://i.postimg.cc/zvFDKNYD/02-giardia-foto-real.png"
   },
   {
-    id: "guia-06",
-    nome: "Ovo de Schistosoma",
-    imagem: "/images/06-ovo-de-schistosoma.webp" // Arquivo local em: public/images/06-ovo-de-schistosoma.webp
-  },
-  {
-    id: "guia-10",
-    nome: "Larva Rabditoide",
-    imagem: "/images/10-larva-rabditoide.webp" // Arquivo local em: public/images/10-larva-rabditoide.webp
-  },
-  {
-    id: "guia-07",
-    nome: "Cisto de Giárdia",
-    imagem: "/images/07-cisto-de-giardia.webp" // Arquivo local em: public/images/07-cisto-de-giardia.webp
+    id: "guia-03",
+    nome: "Taenia sp. (Foto Real)",
+    imagem: "/images/03-taenia-foto-real.png",
+    fallback: "https://i.postimg.cc/cHQdGWCN/03-taenia-foto-real.png"
   },
   {
     id: "guia-04",
-    nome: "Ovo de Tênia",
-    imagem: "/images/04-ovo-de-tenia.webp" // Arquivo local em: public/images/04-ovo-de-tenia.webp
+    nome: "Larva Rabditoide (Foto Real)",
+    imagem: "/images/04-rabditoide-foto-real.png",
+    fallback: "https://i.postimg.cc/fTbQBmxH/04-rabditoide-foto-real.png"
   },
   {
-    id: "guia-11",
-    nome: "Larva Filaríoide",
-    imagem: "/images/11-larva-filarioide.webp" // Arquivo local em: public/images/11-larva-filarioide.webp
+    id: "guia-05",
+    nome: "Larva Filarioide (Foto Real)",
+    imagem: "/images/05-filarioide-foto-real.png",
+    fallback: "https://i.postimg.cc/DySYSgrH/05-filarioide-foto-real.png"
   },
   {
-    id: "guia-08",
-    nome: "Cisto de Entamoeba",
-    imagem: "/images/08-cisto-de-entamoeba.webp" // Arquivo local em: public/images/08-cisto-de-entamoeba.webp
-  },
+    id: "guia-06",
+    nome: "Comparação entre Parasitos (Fotos Reais)",
+    imagem: "/images/06-comparacao-fotos-reais.png",
+    fallback: "https://i.postimg.cc/jj4MpkT8/06-comparacao-fotos-reais.png"
+  }
 ];
 
 const CarouselSlideImage: React.FC<{
   src: string;
+  fallback?: string;
   alt: string;
   isPriority: boolean;
-}> = ({ src, alt, isPriority }) => {
+}> = ({ src, fallback, alt, isPriority }) => {
   const [currentSrc, setCurrentSrc] = useState(src);
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  useEffect(() => {
+    setCurrentSrc(src);
+    setHasError(false);
+    setIsLoaded(false);
+  }, [src]);
+
   const handleError = () => {
-    // Se o .webp falhar, tenta o .png local correspondente
-    if (currentSrc.endsWith(".webp")) {
+    if (fallback && currentSrc !== fallback) {
+      setCurrentSrc(fallback);
+    } else if (currentSrc.endsWith(".webp")) {
       setCurrentSrc(currentSrc.replace(".webp", ".png"));
     } else {
-      // Se ambos falharem, não quebra o layout: mantém dimensões seguras
       setHasError(true);
     }
   };
 
   return (
-    <div className="relative w-full aspect-[278/320] bg-stone-100 flex items-center justify-center overflow-hidden">
+    <div className="relative w-full aspect-[582/800] bg-stone-100 flex items-center justify-center overflow-hidden">
       {!isLoaded && !hasError && (
         <div className="absolute inset-0 bg-stone-200/50 animate-pulse" />
       )}
@@ -115,14 +92,14 @@ const CarouselSlideImage: React.FC<{
         <img
           src={currentSrc}
           alt={alt}
-          width={278}
-          height={320}
+          width={582}
+          height={800}
           loading={isPriority ? "eager" : "lazy"}
           fetchPriority={isPriority ? "high" : "low"}
           decoding="async"
           onLoad={() => setIsLoaded(true)}
           onError={handleError}
-          className={`w-full h-auto block object-contain transition-opacity duration-300 ${
+          className={`w-full h-full object-contain transition-opacity duration-300 ${
             isLoaded ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -236,6 +213,7 @@ export const VisualGuidesShowcase: React.FC = () => {
             <div className="w-full bg-white flex items-center justify-center p-0">
               <CarouselSlideImage
                 src={guia.imagem}
+                fallback={guia.fallback}
                 alt={guia.nome}
                 isPriority={index < 2}
               />
