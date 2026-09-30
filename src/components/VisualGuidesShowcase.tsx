@@ -1,10 +1,19 @@
 import React, { useRef, useState, useEffect } from "react";
 
+// Importações diretas para garantir inclusão garantida e hash nos bundles de produção do Vite
+import guia01Schistosoma from "../assets/images/01-schistosoma-foto-real.webp";
+import guia02Giardia from "../assets/images/02-giardia-foto-real.webp";
+import guia03Taenia from "../assets/images/03-taenia-foto-real.webp";
+import guia04Rabditoide from "../assets/images/04-rabditoide-foto-real.webp";
+import guia05Filarioide from "../assets/images/05-filarioide-foto-real.webp";
+import guia06Comparacao from "../assets/images/06-comparacao-fotos-reais.webp";
+
 interface GuiaSlide {
   id: string;
   nome: string;
   imagem: string;
   fallback?: string;
+  externalFallback?: string;
 }
 
 // Imagens na ordem exata dos links enviados pelo usuário:
@@ -16,68 +25,82 @@ interface GuiaSlide {
 // 6. https://postimg.cc/jWC6NcLN -> 06 - Comparação entre Parasitos (Fotos Reais)
 // ============================================================================
 // CONFIGURAÇÃO DOS GUIAS VISUAIS DO CARROSSEL
-// Arquivos locais armazenados em /public/images/
+// Imagens importadas diretamente de src/assets/images/ com fallback local e CDN
 // ============================================================================
 export const GUIAS_ORDEM: GuiaSlide[] = [
   {
     id: "guia-01",
     nome: "Schistosoma mansoni (Foto Real)",
-    imagem: "/images/01-schistosoma-foto-real.webp",
-    fallback: "https://i.postimg.cc/pVzmPN76/01-schistosoma-foto-real.png"
+    imagem: guia01Schistosoma,
+    fallback: "/images/01-schistosoma-foto-real.webp",
+    externalFallback: "https://i.postimg.cc/pVzmPN76/01-schistosoma-foto-real.png"
   },
   {
     id: "guia-02",
     nome: "Giardia lamblia (Foto Real)",
-    imagem: "/images/02-giardia-foto-real.webp",
-    fallback: "https://i.postimg.cc/zvFDKNYD/02-giardia-foto-real.png"
+    imagem: guia02Giardia,
+    fallback: "/images/02-giardia-foto-real.webp",
+    externalFallback: "https://i.postimg.cc/zvFDKNYD/02-giardia-foto-real.png"
   },
   {
     id: "guia-03",
     nome: "Taenia sp. (Foto Real)",
-    imagem: "/images/03-taenia-foto-real.webp",
-    fallback: "https://i.postimg.cc/cHQdGWCN/03-taenia-foto-real.png"
+    imagem: guia03Taenia,
+    fallback: "/images/03-taenia-foto-real.webp",
+    externalFallback: "https://i.postimg.cc/cHQdGWCN/03-taenia-foto-real.png"
   },
   {
     id: "guia-04",
     nome: "Larva Rabditoide (Foto Real)",
-    imagem: "/images/04-rabditoide-foto-real.webp",
-    fallback: "https://i.postimg.cc/fTbQBmxH/04-rabditoide-foto-real.png"
+    imagem: guia04Rabditoide,
+    fallback: "/images/04-rabditoide-foto-real.webp",
+    externalFallback: "https://i.postimg.cc/fTbQBmxH/04-rabditoide-foto-real.png"
   },
   {
     id: "guia-05",
     nome: "Larva Filarioide (Foto Real)",
-    imagem: "/images/05-filarioide-foto-real.webp",
-    fallback: "https://i.postimg.cc/DySYSgrH/05-filarioide-foto-real.png"
+    imagem: guia05Filarioide,
+    fallback: "/images/05-filarioide-foto-real.webp",
+    externalFallback: "https://i.postimg.cc/DySYSgrH/05-filarioide-foto-real.png"
   },
   {
     id: "guia-06",
     nome: "Comparação entre Parasitos (Fotos Reais)",
-    imagem: "/images/06-comparacao-fotos-reais.webp",
-    fallback: "https://i.postimg.cc/jj4MpkT8/06-comparacao-fotos-reais.png"
+    imagem: guia06Comparacao,
+    fallback: "/images/06-comparacao-fotos-reais.webp",
+    externalFallback: "https://i.postimg.cc/jj4MpkT8/06-comparacao-fotos-reais.png"
   }
 ];
 
 const CarouselSlideImage: React.FC<{
   src: string;
   fallback?: string;
+  externalFallback?: string;
   alt: string;
   isPriority?: boolean;
-}> = ({ src, fallback, alt, isPriority = false }) => {
+}> = ({ src, fallback, externalFallback, alt }) => {
   const [currentSrc, setCurrentSrc] = useState(src);
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     setCurrentSrc(src);
     setHasError(false);
-    setIsLoaded(false);
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+      setIsLoaded(true);
+    } else {
+      setIsLoaded(false);
+    }
   }, [src]);
 
   const handleError = () => {
-    if (currentSrc.endsWith(".webp")) {
-      setCurrentSrc(currentSrc.replace(".webp", ".png"));
-    } else if (fallback && currentSrc !== fallback) {
+    if (fallback && currentSrc !== fallback) {
       setCurrentSrc(fallback);
+    } else if (externalFallback && currentSrc !== externalFallback) {
+      setCurrentSrc(externalFallback);
+    } else if (currentSrc.endsWith(".webp")) {
+      setCurrentSrc(currentSrc.replace(".webp", ".png"));
     } else {
       setHasError(true);
     }
@@ -86,20 +109,21 @@ const CarouselSlideImage: React.FC<{
   return (
     <div className="relative w-full aspect-[582/800] bg-stone-100 flex items-center justify-center overflow-hidden">
       {!isLoaded && !hasError && (
-        <div className="absolute inset-0 bg-stone-200/50 animate-pulse" />
+        <div className="absolute inset-0 bg-stone-200/50 animate-pulse pointer-events-none" />
       )}
       {!hasError ? (
         <img
+          ref={imgRef}
           src={currentSrc}
           alt={alt}
           width={582}
           height={800}
-          loading={isPriority ? "eager" : "lazy"}
-          fetchPriority={isPriority ? "high" : "low"}
+          loading="eager"
           decoding="async"
+          referrerPolicy="no-referrer"
           onLoad={() => setIsLoaded(true)}
           onError={handleError}
-          className={`w-full h-full object-contain transition-opacity duration-300 ${
+          className={`w-full h-full object-contain transition-opacity duration-200 ${
             isLoaded ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -236,6 +260,7 @@ export const VisualGuidesShowcase: React.FC = () => {
               <CarouselSlideImage
                 src={guia.imagem}
                 fallback={guia.fallback}
+                externalFallback={guia.externalFallback}
                 alt={guia.nome}
                 isPriority={index < 2}
               />
