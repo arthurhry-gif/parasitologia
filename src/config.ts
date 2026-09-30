@@ -10,8 +10,8 @@
 export const DATA_FIM_OFERTA = "2026-09-25T23:59:59";
 
 // LINKS DE CHECKOUT
-export const LINK_CHECKOUT_BASICO = "https://ggcheckout.app/checkout/v4/vuGLvnAJ4jC5bioG0Dhb";
-export const LINK_CHECKOUT_COMPLETO = "https://ggcheckout.app/checkout/v4/VQBfyENOAoETwj13byoB";
+export const LINK_CHECKOUT_BASICO = "https://ggcheckout.app/checkout/v2/vuGLvnAJ4jC5bioG0Dhb";
+export const LINK_CHECKOUT_COMPLETO = "https://ggcheckout.app/checkout/v2/VQBfyENOAoETwj13byoB";
 
 // Formata a data de encerramento para exibição nos textos que contêm [DATA REAL DE ENCERRAMENTO]
 export function formatarDataEncerramento(dataIso: string): string {
