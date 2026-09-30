@@ -505,13 +505,13 @@ export default function App() {
                   de <span className="line-through">R$77,90</span> por:
                 </p>
                 <p className="text-3xl sm:text-4xl font-black text-slate-950 mt-1">
-                  R$ 19,90
+                  R$ 27,90
                 </p>
                 <p className="text-xs font-semibold text-slate-600 mt-0.5">
-                  ou 2x de R$10,35
+                  ou 4x de R$7,25
                 </p>
                 <p className="mt-2 text-xs font-bold text-amber-900 bg-amber-100/90 inline-block px-2.5 py-1 rounded border border-amber-300">
-                  Você economiza R$ 58,00
+                  Você economiza R$ 50,00
                 </p>
 
                 <div className="mt-6">
@@ -584,13 +584,13 @@ export default function App() {
                   de <span className="line-through">R$137,90</span> por:
                 </p>
                 <p className="text-3xl sm:text-4xl font-black text-emerald-400 mt-1">
-                  R$ 27,90
+                  R$ 37,90
                 </p>
                 <p className="text-xs font-semibold text-slate-300 mt-0.5">
-                  ou 4x de R$7,25
+                  ou 6x de R$6,65
                 </p>
                 <p className="mt-2 text-xs font-bold text-emerald-300 bg-emerald-950/80 inline-block px-2.5 py-1 rounded border border-emerald-500/40">
-                  Você economiza R$ 110,00
+                  Você economiza R$ 100,00
                 </p>
 
                 <div className="mt-6">
