@@ -1,12 +1,18 @@
 import React, { useRef, useState, useEffect } from "react";
 
 // Importações diretas para garantir inclusão garantida e hash nos bundles de produção do Vite
-import guia01Schistosoma from "../assets/images/01-schistosoma-foto-real.webp";
-import guia02Giardia from "../assets/images/02-giardia-foto-real.webp";
-import guia03Taenia from "../assets/images/03-taenia-foto-real.webp";
-import guia04Rabditoide from "../assets/images/04-rabditoide-foto-real.webp";
-import guia05Filarioide from "../assets/images/05-filarioide-foto-real.webp";
-import guia06Comparacao from "../assets/images/06-comparacao-fotos-reais.webp";
+import guia01Ascaris from "../assets/images/01-ovo-de-ascaride.webp";
+import guia02Trichuris from "../assets/images/02-ovo-de-trichuris.webp";
+import guia03Enterobius from "../assets/images/03-ovo-de-enterobius.webp";
+import guia04Tenia from "../assets/images/04-ovo-de-tenia.webp";
+import guia05Hymenolepis from "../assets/images/05-ovo-de-hymenolepis.webp";
+import guia06Schistosoma from "../assets/images/06-ovo-de-schistosoma.webp";
+import guia07Giardia from "../assets/images/07-cisto-de-giardia.webp";
+import guia08Entamoeba from "../assets/images/08-cisto-de-entamoeba.webp";
+import guia09Cryptosporidium from "../assets/images/09-oocisto-de-cryptosporidium.webp";
+import guia10Rabditoide from "../assets/images/10-larva-rabditoide.webp";
+import guia11Filarioide from "../assets/images/11-larva-filarioide.webp";
+import guia12Ancilostoma from "../assets/images/12-larva-de-ancilostoma.webp";
 
 interface GuiaSlide {
   id: string;
@@ -16,59 +22,81 @@ interface GuiaSlide {
   externalFallback?: string;
 }
 
-// Imagens na ordem exata dos links enviados pelo usuário:
-// 1. https://postimg.cc/4n4f10X6 -> 01 - Schistosoma (Foto Real)
-// 2. https://postimg.cc/vxDdwpmC -> 02 - Giardia (Foto Real)
-// 3. https://postimg.cc/HcsqbfbS -> 03 - Taenia (Foto Real)
-// 4. https://postimg.cc/23gt5q9v -> 04 - Larva Rabditoide (Foto Real)
-// 5. https://postimg.cc/svRJ8504 -> 05 - Larva Filarioide (Foto Real)
-// 6. https://postimg.cc/jWC6NcLN -> 06 - Comparação entre Parasitos (Fotos Reais)
 // ============================================================================
-// CONFIGURAÇÃO DOS GUIAS VISUAIS DO CARROSSEL
-// Imagens importadas diretamente de src/assets/images/ com fallback local e CDN
+// CONFIGURAÇÃO DOS GUIAS VISUAIS DO CARROSSEL (GUIAS ORIGINAIS)
 // ============================================================================
 export const GUIAS_ORDEM: GuiaSlide[] = [
   {
     id: "guia-01",
-    nome: "Schistosoma mansoni (Foto Real)",
-    imagem: guia01Schistosoma,
-    fallback: "/images/01-schistosoma-foto-real.webp",
-    externalFallback: "https://i.postimg.cc/pVzmPN76/01-schistosoma-foto-real.png"
+    nome: "Ascaris lumbricoides (Ovo Fértil)",
+    imagem: guia01Ascaris,
+    fallback: "/images/01-ovo-de-ascaride.webp"
   },
   {
     id: "guia-02",
-    nome: "Giardia lamblia (Foto Real)",
-    imagem: guia02Giardia,
-    fallback: "/images/02-giardia-foto-real.webp",
-    externalFallback: "https://i.postimg.cc/zvFDKNYD/02-giardia-foto-real.png"
+    nome: "Trichuris trichiura (Ovo em Barril)",
+    imagem: guia02Trichuris,
+    fallback: "/images/02-ovo-de-trichuris.webp"
   },
   {
     id: "guia-03",
-    nome: "Taenia sp. (Foto Real)",
-    imagem: guia03Taenia,
-    fallback: "/images/03-taenia-foto-real.webp",
-    externalFallback: "https://i.postimg.cc/cHQdGWCN/03-taenia-foto-real.png"
+    nome: "Enterobius vermicularis (Ovo em 'D')",
+    imagem: guia03Enterobius,
+    fallback: "/images/03-ovo-de-enterobius.webp"
   },
   {
     id: "guia-04",
-    nome: "Larva Rabditoide (Foto Real)",
-    imagem: guia04Rabditoide,
-    fallback: "/images/04-rabditoide-foto-real.webp",
-    externalFallback: "https://i.postimg.cc/fTbQBmxH/04-rabditoide-foto-real.png"
+    nome: "Taenia sp. (Ovo Esférico)",
+    imagem: guia04Tenia,
+    fallback: "/images/04-ovo-de-tenia.webp"
   },
   {
     id: "guia-05",
-    nome: "Larva Filarioide (Foto Real)",
-    imagem: guia05Filarioide,
-    fallback: "/images/05-filarioide-foto-real.webp",
-    externalFallback: "https://i.postimg.cc/DySYSgrH/05-filarioide-foto-real.png"
+    nome: "Hymenolepis nana (Ovo com Filamentos)",
+    imagem: guia05Hymenolepis,
+    fallback: "/images/05-ovo-de-hymenolepis.webp"
   },
   {
     id: "guia-06",
-    nome: "Comparação entre Parasitos (Fotos Reais)",
-    imagem: guia06Comparacao,
-    fallback: "/images/06-comparacao-fotos-reais.webp",
-    externalFallback: "https://i.postimg.cc/jj4MpkT8/06-comparacao-fotos-reais.png"
+    nome: "Schistosoma mansoni (Espículo Lateral)",
+    imagem: guia06Schistosoma,
+    fallback: "/images/06-ovo-de-schistosoma.webp"
+  },
+  {
+    id: "guia-07",
+    nome: "Giardia lamblia (Cisto Oval)",
+    imagem: guia07Giardia,
+    fallback: "/images/07-cisto-de-giardia.webp"
+  },
+  {
+    id: "guia-08",
+    nome: "Entamoeba histolytica (Cisto Tetranucleado)",
+    imagem: guia08Entamoeba,
+    fallback: "/images/08-cisto-de-entamoeba.webp"
+  },
+  {
+    id: "guia-09",
+    nome: "Cryptosporidium sp. (Oocisto)",
+    imagem: guia09Cryptosporidium,
+    fallback: "/images/09-oocisto-de-cryptosporidium.webp"
+  },
+  {
+    id: "guia-10",
+    nome: "Larva Rabditoide (Strongyloides)",
+    imagem: guia10Rabditoide,
+    fallback: "/images/10-larva-rabditoide.webp"
+  },
+  {
+    id: "guia-11",
+    nome: "Larva Filarioide (Strongyloides)",
+    imagem: guia11Filarioide,
+    fallback: "/images/11-larva-filarioide.webp"
+  },
+  {
+    id: "guia-12",
+    nome: "Larva de Ancilostomídeo",
+    imagem: guia12Ancilostoma,
+    fallback: "/images/12-larva-de-ancilostoma.webp"
   }
 ];
 
@@ -107,7 +135,7 @@ const CarouselSlideImage: React.FC<{
   };
 
   return (
-    <div className="relative w-full aspect-[582/800] bg-stone-100 flex items-center justify-center overflow-hidden">
+    <div className="relative w-full aspect-[7/8] bg-stone-100 flex items-center justify-center overflow-hidden">
       {!isLoaded && !hasError && (
         <div className="absolute inset-0 bg-stone-200/50 animate-pulse pointer-events-none" />
       )}
@@ -116,7 +144,7 @@ const CarouselSlideImage: React.FC<{
           ref={imgRef}
           src={currentSrc}
           alt={alt}
-          width={582}
+          width={700}
           height={800}
           loading="eager"
           decoding="async"
